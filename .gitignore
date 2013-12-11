@@ -1,0 +1,13 @@
+#################
+# IntelliJ IDEA #
+#################
+.idea/workspace.xml
+.idea/dictionaries/*
+.idea/tasks.xml
+.idea/dataSources*
+.iws
+
+############
+# Mac OS X #
+############
+.DS_Store
