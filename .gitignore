@@ -1,11 +1,13 @@
 #################
 # IntelliJ IDEA #
 #################
-.idea/workspace.xml
-.idea/dictionaries/*
-.idea/tasks.xml
-.idea/dataSources*
-.iws
+.idea/
+
+#################
+# Generate Code #
+#################
+gen/
+bin/
 
 ############
 # Mac OS X #
