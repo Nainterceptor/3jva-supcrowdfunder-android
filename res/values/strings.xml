@@ -4,4 +4,7 @@
     <string name="contributeButton">Contribuer</string>
     <string name="contributeAmount">Montant : </string>
     <string name="contributeHint">Montant en €</string>
+    <string name="contributeThanks1">Vous aller contribuer au projet : </string>
+    <string name="contributeThanks2">, le créateur du projet vous remercie, pour votre participation.</string>
+    <string name="contributeTitle">Contribuer à un projet</string>
 </resources>

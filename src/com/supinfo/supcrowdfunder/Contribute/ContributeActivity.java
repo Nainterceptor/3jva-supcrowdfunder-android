@@ -1,6 +1,7 @@
 package com.supinfo.supcrowdfunder.Contribute;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.widget.TextView;
 import com.supinfo.supcrowdfunder.R;
@@ -13,8 +14,9 @@ public class ContributeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contribute_activity);
 
-        TextView title = (TextView) findViewById(R.id.contributeTitle);
+        Resources res = getResources();
+        TextView title = (TextView) findViewById(R.id.thanks);
 
-        title.setText("Contribuer au projet : project.name");
+        title.setText(res.getString(R.string.contributeThanks1)+" "+"project.name"+". \n\n"+"project.user.firstname"+" "+"project.user.lastname"+res.getString(R.string.contributeThanks2));
     }
 }
