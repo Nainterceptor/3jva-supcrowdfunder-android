@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Supcrowdfunder-Android</string>
+    <string name="contributeButton">Contribuer</string>
+    <string name="contributeAmount">Montant : </string>
+    <string name="contributeHint">Montant en €</string>
 </resources>

@@ -13,7 +13,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             <TextView
-                    android:id="@+id/TitleContribute"/>
+                    android:id="@+id/projectTitle"/>
             <View
                     android:layout_height="2dip"
                     android:background="#FF909090"
