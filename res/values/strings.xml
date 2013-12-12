@@ -7,4 +7,10 @@
     <string name="contributeThanks1">Vous aller contribuer au projet : </string>
     <string name="contributeThanks2">, le créateur du projet vous remercie, pour votre participation.</string>
     <string name="contributeTitle">Contribuer à un projet</string>
+    <string name="contributeAlertContent">Vous aller faire une contribution de :</string>
+    <string name="contributeAlertTitle">Confirmation de contribution</string>
+    <string name="contributeToastValidate">Contribution ajoutée</string>
+    <string name="contributeToastCancel">Contribution annulée</string>
+    <string name="validate">Confirmer</string>
+    <string name="cancel">Annuler</string>
 </resources>
