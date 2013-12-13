@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Supcrowdfunder-Android</string>
+
     <string name="contributeButton">Contribuer</string>
     <string name="contributeAmount">Montant : </string>
     <string name="contributeHint">Montant en €</string>
@@ -13,6 +14,10 @@
     <string name="contributeToastCancel">Contribution annulée</string>
     <string name="contributeToastEmpty">Le montant est vide</string>
     <string name="contributeToastInvalid">Le montant doit être supérieur à 0</string>
+
+    <string name="indexTitle">Liste des projets</string>
+    <string name="projectView">Voir</string>
+
     <string name="validate">Confirmer</string>
     <string name="cancel">Annuler</string>
 </resources>
