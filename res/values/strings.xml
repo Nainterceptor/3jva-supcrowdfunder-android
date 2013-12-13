@@ -11,6 +11,8 @@
     <string name="contributeAlertTitle">Confirmation de contribution</string>
     <string name="contributeToastValidate">Contribution ajoutée</string>
     <string name="contributeToastCancel">Contribution annulée</string>
+    <string name="contributeToastEmpty">Le montant est vide</string>
+    <string name="contributeToastInvalid">Le montant doit être supérieur à 0</string>
     <string name="validate">Confirmer</string>
     <string name="cancel">Annuler</string>
 </resources>
