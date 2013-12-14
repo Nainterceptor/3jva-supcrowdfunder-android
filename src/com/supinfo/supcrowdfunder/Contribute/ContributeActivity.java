@@ -69,7 +69,7 @@ public class ContributeActivity extends Activity {
     private DialogInterface.OnClickListener alertValidateListener = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
-            RestClient client = new RestClient("http://192.168.1.21:8080/api/project/1/contribute");
+            RestClient client = new RestClient(res.getString(R.string.URL));
             client.AddParam("email", "foo@bar.com");
             client.AddParam("password", "foobar");
             client.AddParam("amount", amount.getText().toString());
