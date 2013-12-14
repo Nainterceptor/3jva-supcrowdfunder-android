@@ -1,4 +1,4 @@
-package com.supinfo.supcrowdfunder.Contribute;
+package com.supinfo.supcrowdfunder.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -12,14 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.supinfo.supcrowdfunder.R;
 import com.supinfo.supcrowdfunder.RestClient;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Robin on 12/12/13.

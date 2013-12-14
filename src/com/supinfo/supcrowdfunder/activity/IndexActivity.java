@@ -1,4 +1,4 @@
-package com.supinfo.supcrowdfunder.Index;
+package com.supinfo.supcrowdfunder.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -7,7 +7,6 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
-import com.supinfo.supcrowdfunder.Project.ProjectActivity;
 import com.supinfo.supcrowdfunder.R;
 
 import java.util.ArrayList;
