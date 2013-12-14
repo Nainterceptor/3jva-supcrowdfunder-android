@@ -11,6 +11,6 @@
                 android:name=".activity.ContributeActivity"
                 android:label="ContributeActivity"/>
         <activity android:name=".activity.IndexActivity" android:label="IndexActivity"/>
-        <activity android:name=".activity.ProjectActivity" android:label="ProjectActivity"/>
+        <activity android:name=".activity.ProjectDetailsActivity" android:label="ProjectActivity"/>
     </application>
 </manifest>
