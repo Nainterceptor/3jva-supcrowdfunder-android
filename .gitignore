@@ -1,7 +1,10 @@
 #################
 # IntelliJ IDEA #
 #################
-.idea/
+.idea/workspace.xml
+.idea/scopes/*
+.idea/copyright/*
+
 
 #################
 # Generate Code #
