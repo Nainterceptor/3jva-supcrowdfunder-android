@@ -11,13 +11,24 @@
             android:layout_weight="95">
         <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:stretchColumns="1">
             <TextView
-                    android:id="@+id/projectTitle"/>
+                    android:id="@+id/projectName"/>
             <View
                     android:layout_height="2dip"
                     android:background="#FF909090"
                     />
+            <TableRow>
+                <TextView
+                        android:text="@string/projectNeedCredits"
+                        android:layout_column="1"
+                        android:padding="3dp"/>
+                <TextView
+                        android:id="@+id/projectNeedCredits"
+                        android:gravity="right"
+                        android:padding="3dp"/>
+            </TableRow>
         </TableLayout>
     </ScrollView>
     <Button
