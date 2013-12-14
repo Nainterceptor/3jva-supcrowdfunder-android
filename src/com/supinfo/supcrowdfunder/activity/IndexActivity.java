@@ -35,7 +35,7 @@ public class IndexActivity extends Activity {
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(IndexActivity.this, ProjectActivity.class);
+                Intent intent = new Intent(IndexActivity.this, ProjectDetailsActivity.class);
                 startActivity(intent);
             }
         });
