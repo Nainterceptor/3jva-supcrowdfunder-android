@@ -11,6 +11,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.supinfo.supcrowdfunder.R;
+import com.supinfo.supcrowdfunder.RestClient;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Robin on 12/12/13.
@@ -27,9 +36,9 @@ public class ContributeActivity extends Activity {
         setContentView(R.layout.contribute_activity);
 
         res = getResources();
-        body = (TextView) findViewById(R.id.thanks);
-        amount = (EditText) findViewById(R.id.amount);
-        contributeButton = (Button) findViewById(R.id.button);
+        body = (TextView) findViewById(R.id.contributeThanks);
+        amount = (EditText) findViewById(R.id.contributeAmount);
+        contributeButton = (Button) findViewById(R.id.contributeButton);
         alert = new AlertDialog.Builder(this);
 
         body.setText(res.getString(R.string.contributeThanks1) + " " + "project.name" + ". \n\n" +
@@ -60,7 +69,21 @@ public class ContributeActivity extends Activity {
     private DialogInterface.OnClickListener alertValidateListener = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
-            Toast.makeText(ContributeActivity.this,res.getString(R.string.contributeToastValidate),Toast.LENGTH_SHORT).show();
+            RestClient client = new RestClient("http://192.168.1.21:8080/api/project/1/contribute");
+            client.AddParam("email", "foo@bar.com");
+            client.AddParam("password", "foobar");
+            client.AddParam("amount", amount.getText().toString());
+            client.AddHeader("Accept", "*/*");
+            client.AddHeader("Cache-Control", "no-cache");
+
+            try {
+                client.Execute(RestClient.RequestMethod.POST);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            String response = client.getResponse();
+            Toast.makeText(ContributeActivity.this,res.getString(R.string.contributeToastValidate)+response,Toast.LENGTH_LONG).show();
         }
     };
     private DialogInterface.OnClickListener alertCancelListener = new DialogInterface.OnClickListener() {

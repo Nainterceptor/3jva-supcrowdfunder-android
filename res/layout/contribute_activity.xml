@@ -16,7 +16,7 @@
             android:textSize="20sp"
             android:layout_alignParentTop="true"/>
     <TextView
-            android:id="@+id/thanks"
+            android:id="@+id/contributeThanks"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/contributeTitle"
@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_above="@+id/button">
+            android:layout_above="@+id/contributeButton">
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
                 android:textStyle="bold"
                 android:paddingRight="2dip"/>
         <EditText
-                android:id="@+id/amount"
+                android:id="@+id/contributeAmount"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -43,7 +43,7 @@
 
     </LinearLayout>
     <Button
-            android:id="@+id/button"
+            android:id="@+id/contributeButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/contributeButton"

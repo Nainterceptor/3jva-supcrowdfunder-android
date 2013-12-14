@@ -18,6 +18,8 @@
     <string name="indexTitle">Liste des projets</string>
     <string name="projectView">Voir</string>
 
+    <string name="projectNeedCredits">Fonds nécessaire</string>
+
     <string name="validate">Confirmer</string>
     <string name="cancel">Annuler</string>
 </resources>
