@@ -3,6 +3,7 @@ package com.supinfo.supcrowdfunder.activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.supinfo.supcrowdfunder.R;
 import com.supinfo.supcrowdfunder.RestClient;
+import com.supinfo.supcrowdfunder.entity.Project;
 
 /**
  * Created by Robin on 12/12/13.
@@ -22,10 +24,15 @@ public class ContributeActivity extends Activity {
     TextView body = null;
     EditText amount = null;
     AlertDialog.Builder alert = null;
+    Project project = null;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contribute_activity);
+
+        Intent i = getIntent();
+
+        project = i.getParcelableExtra("com.supinfo.supcrowdfunder.activity.PROJECT");
 
         res = getResources();
         body = (TextView) findViewById(R.id.contributeThanks);
@@ -33,8 +40,8 @@ public class ContributeActivity extends Activity {
         contributeButton = (Button) findViewById(R.id.contributeButton);
         alert = new AlertDialog.Builder(this);
 
-        body.setText(res.getString(R.string.contributeThanks1) + " " + "project.name" + ". \n\n" +
-                "project.user.firstname" + " " + "project.user.lastname" +
+        body.setText(res.getString(R.string.contributeThanks1) + " " + project.getName() + ". \n\n" +
+                project.getUser().getFirstname() + " " + project.getUser().getLastname() +
                 res.getString(R.string.contributeThanks2));
         contributeButton.setOnClickListener(contributeListener);
     }
@@ -62,8 +69,8 @@ public class ContributeActivity extends Activity {
         @Override
         public void onClick(DialogInterface dialog, int which) {
             RestClient client = new RestClient(res.getString(R.string.URL)+"/project/1/contribute");
-            client.AddParam("email", "foo@bar.com");
-            client.AddParam("password", "foobar");
+            client.AddParam("email", project.getUser().getEmail());
+            client.AddParam("password", project.getUser().getPassword());
             client.AddParam("amount", amount.getText().toString());
             client.AddHeader("Accept", "*/*");
             client.AddHeader("Cache-Control", "no-cache");
@@ -75,7 +82,8 @@ public class ContributeActivity extends Activity {
             }
 
             String response = client.getResponse();
-            Toast.makeText(ContributeActivity.this,res.getString(R.string.contributeToastValidate)+response,Toast.LENGTH_LONG).show();
+            Toast.makeText(ContributeActivity.this,res.getString(R.string.contributeToastValidate),Toast.LENGTH_LONG).show();
+            amount.getText().clear();
         }
     };
     private DialogInterface.OnClickListener alertCancelListener = new DialogInterface.OnClickListener() {

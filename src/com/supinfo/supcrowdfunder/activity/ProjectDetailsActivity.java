@@ -1,8 +1,11 @@
 package com.supinfo.supcrowdfunder.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import com.supinfo.supcrowdfunder.R;
 import com.supinfo.supcrowdfunder.RestClient;
@@ -26,6 +29,7 @@ public class ProjectDetailsActivity extends Activity {
     TextView creator = null;
     TextView description = null;
     RestClient client = null;
+    Button projectButton = null;
 
     //ce qui suit est pour tester
     Category category = new Category()
@@ -78,8 +82,10 @@ public class ProjectDetailsActivity extends Activity {
             e.printStackTrace();
         }
         String response = client.getResponse();
-        response = response.substring(0,response.indexOf("\n"));
+        response = response.substring(0, response.indexOf("\n"));
         Long respLong = Long.parseLong(response);
+
+        projectButton = (Button) findViewById(R.id.projectButton);
 
         projectName.setText(project.getName());
         needCredits.setText(project.getNeedCredits().toString()+"€");
@@ -89,5 +95,15 @@ public class ProjectDetailsActivity extends Activity {
         term.setText(project.getTerm());
         creator.setText(project.getUser().getFirstname()+" "+project.getUser().getLastname());
         description.setText(project.getDetails());
+
+        projectButton.setOnClickListener(projectListener);
     }
+    private View.OnClickListener projectListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent i = new Intent(ProjectDetailsActivity.this, ContributeActivity.class);
+            i.putExtra("com.supinfo.supcrowdfunder.activity.PROJECT", project);
+            startActivity(i);
+        }
+    };
 }

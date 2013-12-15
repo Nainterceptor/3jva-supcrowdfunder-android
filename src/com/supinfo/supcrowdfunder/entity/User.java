@@ -30,8 +30,8 @@ public class User implements Parcelable {
         address = null;
         zipCode = null;
         city = null;
-        sex = null;
-        admin = null;
+        sex = 0;
+        admin = 0;
         createdAt = null;
     }
 
