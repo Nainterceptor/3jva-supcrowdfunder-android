@@ -68,13 +68,24 @@ public class ProjectDetailsActivity extends Activity {
         res = getResources();
         projectName = (TextView) findViewById(R.id.projectName);
         needCredits = (TextView) findViewById(R.id.projectNeedCredits);
-        actualCredits = (TextView) findViewById(R.id.projectActualCredits);
-        percentage = (TextView) findViewById(R.id.projectPercentage);
         createdAt = (TextView) findViewById(R.id.projectCreatedAt);
         term = (TextView) findViewById(R.id.projectTerm);
         creator = (TextView) findViewById(R.id.projectCreator);
         description = (TextView) findViewById(R.id.projectDescription);
 
+        projectButton = (Button) findViewById(R.id.projectButton);
+
+        projectName.setText(project.getName());
+        needCredits.setText(project.getNeedCredits().toString()+"€");
+        createdAt.setText(project.getCreatedAt());
+        term.setText(project.getTerm());
+        creator.setText(project.getUser().getFirstname()+" "+project.getUser().getLastname());
+        description.setText(project.getDetails());
+    }
+    public void onResume(){
+
+        actualCredits = (TextView) findViewById(R.id.projectActualCredits);
+        percentage = (TextView) findViewById(R.id.projectPercentage);
         client = new RestClient(res.getString(R.string.URL)+"/project/"+project.getId().toString()+"/contributions");
         try {
             client.Execute(RestClient.RequestMethod.GET);
@@ -85,16 +96,8 @@ public class ProjectDetailsActivity extends Activity {
         response = response.substring(0, response.indexOf("\n"));
         Long respLong = Long.parseLong(response);
 
-        projectButton = (Button) findViewById(R.id.projectButton);
-
-        projectName.setText(project.getName());
-        needCredits.setText(project.getNeedCredits().toString()+"€");
         actualCredits.setText(response + "€");
-        percentage.setText(String.valueOf(respLong*100L/project.getNeedCredits())+"%");
-        createdAt.setText(project.getCreatedAt());
-        term.setText(project.getTerm());
-        creator.setText(project.getUser().getFirstname()+" "+project.getUser().getLastname());
-        description.setText(project.getDetails());
+        percentage.setText(String.valueOf(respLong * 100L / project.getNeedCredits()) + "%");
 
         projectButton.setOnClickListener(projectListener);
     }
