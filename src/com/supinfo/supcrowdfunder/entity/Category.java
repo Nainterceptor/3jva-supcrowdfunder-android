@@ -10,6 +10,16 @@ public class Category implements Parcelable {
     protected Long id;
     protected String name;
 
+    public Category (){
+        id=null;
+        name=null;
+    }
+
+    public Category (Long cId, String cName){
+        id=cId;
+        name=cName;
+    }
+
     @Override
     public int describeContents() {
         //On renvoie 0, car notre classe ne contient pas de FileDescriptor
@@ -40,8 +50,9 @@ public class Category implements Parcelable {
         name = in.readString();
     }
 
-    public void setId(Long id) {
+    public Category setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public Long getId() {

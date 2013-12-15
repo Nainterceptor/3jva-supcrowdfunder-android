@@ -20,6 +20,37 @@ public class User implements Parcelable {
     protected Integer admin;
     protected String createdAt;
 
+    public User (){
+        id = null;
+        email = null;
+        password = null;
+        salt = null;
+        firstname = null;
+        lastname = null;
+        address = null;
+        zipCode = null;
+        city = null;
+        sex = null;
+        admin = null;
+        createdAt = null;
+    }
+
+    public User (Long cId, String cEmail, String cPassword, String cSalt, String cFirstname, String cLastname,
+                 String cAddress, String cZipCode, String cCity, Integer cSex, Integer cAdmin, String cCreatedAt){
+        id = cId;
+        email = cEmail;
+        password = cPassword;
+        salt = cSalt;
+        firstname = cFirstname;
+        lastname = cLastname;
+        address = cAddress;
+        zipCode = cZipCode;
+        city = cCity;
+        sex = cSex;
+        admin = cAdmin;
+        createdAt = cCreatedAt.substring(0, 10);
+    }
+
     @Override
     public int describeContents() {
         //On renvoie 0, car notre classe ne contient pas de FileDescriptor
@@ -172,7 +203,8 @@ public class User implements Parcelable {
         return createdAt;
     }
 
-    public void setCreatedAt(String  createdAt) {
-        this.createdAt = createdAt;
+    public User setCreatedAt(String  createdAt) {
+        this.createdAt = createdAt.substring(0, 10);
+        return this;
     }
 }

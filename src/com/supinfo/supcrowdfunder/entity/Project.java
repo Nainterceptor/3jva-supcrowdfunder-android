@@ -18,6 +18,29 @@ public class Project implements Parcelable {
     protected Category category;
     protected String createdAt;
 
+    public Project () {
+        id = null;
+        name = null;
+        details = null;
+        user = null;
+        needCredits = null;
+        term = null;
+        category = null;
+        createdAt = null;
+    }
+
+    public Project (Long cId, String cName, String cDetails, User cUser, Long cNeedCredits, String cTerm, Category cCategory,
+                    String cCreatedAt){
+        id = cId;
+        name = cName;
+        details = cDetails;
+        user = cUser;
+        needCredits = cNeedCredits;
+        term = cTerm;
+        category = cCategory;
+        createdAt = cCreatedAt.substring(0, 10);
+    }
+
     @Override
     public int describeContents() {
         //On renvoie 0, car notre classe ne contient pas de FileDescriptor
@@ -110,7 +133,7 @@ public class Project implements Parcelable {
     }
 
     public Project setTerm(String term) {
-        this.term = term;
+        this.term = term.substring(0, 10);
         return this;
     }
 
@@ -127,7 +150,8 @@ public class Project implements Parcelable {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
+    public Project setCreatedAt(String createdAt) {
+        this.createdAt = createdAt.substring(0, 10);
+        return this;
     }
 }
