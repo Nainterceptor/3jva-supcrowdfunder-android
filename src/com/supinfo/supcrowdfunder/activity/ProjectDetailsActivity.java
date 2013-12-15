@@ -15,6 +15,11 @@ public class ProjectDetailsActivity extends Activity {
     Resources res = null;
     TextView projectName = null;
     TextView needCredits = null;
+    TextView actualCredits = null;
+    TextView percentage = null;
+    TextView createdAt = null;
+    TextView term = null;
+    TextView creator = null;
     TextView description = null;
 
     public void onCreate(Bundle savedInstanceState) {
@@ -24,6 +29,11 @@ public class ProjectDetailsActivity extends Activity {
         res = getResources();
         projectName = (TextView) findViewById(R.id.projectName);
         needCredits = (TextView) findViewById(R.id.projectNeedCredits);
+        actualCredits = (TextView) findViewById(R.id.projectActualCredits);
+        percentage = (TextView) findViewById(R.id.projectPercentage);
+        createdAt = (TextView) findViewById(R.id.projectCreatedAt);
+        term = (TextView) findViewById(R.id.projectTerm);
+        creator = (TextView) findViewById(R.id.projectCreator);
         description = (TextView) findViewById(R.id.projectDescription);
 
         projectName.setText("project.name");
