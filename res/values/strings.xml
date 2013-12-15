@@ -19,6 +19,13 @@
     <string name="projectView">Voir</string>
 
     <string name="projectNeedCredits">Fonds nécessaire</string>
+    <string name="projectActualCredits">Fonds actuels</string>
+    <string name="projectCreatedAt">Crée le</string>
+    <string name="projectTerm">Date d\'échéance</string>
+    <string name="projectCreator">Créateur</string>
+    <string name="projectDescription">Description :</string>
+    <string name="projectPercentage">Pourcentage d\'avancement</string>
+    <string name="projectButton">Participer</string>
 
     <string name="validate">Confirmer</string>
     <string name="cancel">Annuler</string>

@@ -1,39 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" tools:context=".activity.ProjectDetailsActivity">
 
+
+    <TableLayout
+            android:id="@+id/projectTable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1"
+            android:layout_alignParentTop="true">
+        <TextView
+                android:id="@+id/projectName"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:gravity="center"
+                android:padding="8dp"/>
+        <View
+                android:layout_height="2dip"
+                android:background="#FF909090"
+                />
+        <TableRow>
+            <TextView
+                    android:text="@string/projectNeedCredits"
+                    android:layout_column="1"
+                    android:padding="3dp"/>
+            <TextView
+                    android:id="@+id/projectNeedCredits"
+                    android:gravity="right"
+                    android:padding="3dp"/>
+        </TableRow>
+        <View
+                android:layout_height="2dip"
+                android:background="#FF909090"
+                />
+        <TableRow>
+            <TextView
+                    android:text="@string/projectActualCredits"
+                    android:layout_column="1"
+                    android:padding="3dp"/>
+            <TextView
+                    android:id="@+id/projectActualCredits"
+                    android:gravity="right"
+                    android:padding="3dp"/>
+        </TableRow>
+        <View
+                android:layout_height="2dip"
+                android:background="#FF909090"
+                />
+        <TableRow>
+            <TextView
+                    android:text="@string/projectPercentage"
+                    android:layout_column="1"
+                    android:padding="3dp"/>
+            <TextView
+                    android:id="@+id/projectPercentage"
+                    android:gravity="right"
+                    android:padding="3dp"/>
+        </TableRow>
+        <View
+                android:layout_height="2dip"
+                android:background="#FF909090"
+                />
+        <TableRow>
+            <TextView
+                    android:text="@string/projectCreatedAt"
+                    android:layout_column="1"
+                    android:padding="3dp"/>
+            <TextView
+                    android:id="@+id/projectCreatedAt"
+                    android:gravity="right"
+                    android:padding="3dp"/>
+        </TableRow>
+        <View
+                android:layout_height="2dip"
+                android:background="#FF909090"
+                />
+        <TableRow>
+            <TextView
+                    android:text="@string/projectTerm"
+                    android:layout_column="1"
+                    android:padding="3dp"/>
+            <TextView
+                    android:id="@+id/projectTerm"
+                    android:gravity="right"
+                    android:padding="3dp"/>
+        </TableRow>
+        <View
+                android:layout_height="2dip"
+                android:background="#FF909090"
+                />
+        <TableRow>
+            <TextView
+                    android:text="@string/projectCreator"
+                    android:layout_column="1"
+                    android:padding="3dp"/>
+            <TextView
+                    android:id="@+id/projectCreator"
+                    android:gravity="right"
+                    android:padding="3dp"/>
+        </TableRow>
+        <View
+                android:layout_height="2dip"
+                android:background="#FF909090"
+                />
+    </TableLayout>
+    <TextView
+            android:id="@+id/projectTitleDescription"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="@string/projectDescription"
+            android:textStyle="italic"
+            android:padding="3dp"
+            android:layout_below="@id/projectTable"/>
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="95">
-        <TableLayout
+            android:layout_below="@id/projectTitleDescription"
+            android:layout_above="@+id/projectButton">
+
+        <TextView
+                android:id="@+id/projectDescription"
+                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:stretchColumns="1">
-            <TextView
-                    android:id="@+id/projectName"/>
-            <View
-                    android:layout_height="2dip"
-                    android:background="#FF909090"
-                    />
-            <TableRow>
-                <TextView
-                        android:text="@string/projectNeedCredits"
-                        android:layout_column="1"
-                        android:padding="3dp"/>
-                <TextView
-                        android:id="@+id/projectNeedCredits"
-                        android:gravity="right"
-                        android:padding="3dp"/>
-            </TableRow>
-        </TableLayout>
+                android:padding="3dp"
+                android:paddingLeft="30dp"/>
     </ScrollView>
     <Button
+            android:id="@+id/projectButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="5"/>
+            android:layout_alignParentBottom="true"
+            android:text="@string/projectButton"/>
 
-</LinearLayout>
+</RelativeLayout>

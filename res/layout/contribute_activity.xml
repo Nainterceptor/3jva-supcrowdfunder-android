@@ -5,7 +5,7 @@
               android:paddingLeft="3dp"
               android:paddingRight="3dp"
               android:layout_width="match_parent"
-              android:layout_height="match_parent" tools:context=".Contribute.ContributeActivity">
+              android:layout_height="match_parent" tools:context=".activity.ContributeActivity">
     <TextView
             android:id="@+id/contributeTitle"
             android:layout_width="match_parent"
