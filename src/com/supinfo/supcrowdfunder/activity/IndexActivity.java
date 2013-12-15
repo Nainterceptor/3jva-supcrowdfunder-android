@@ -5,16 +5,25 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Parcel;
 import android.view.View;
 import android.widget.*;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.supinfo.supcrowdfunder.R;
+import com.supinfo.supcrowdfunder.RestClient;
+import com.supinfo.supcrowdfunder.entity.Project;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by Fireaxe on 13/12/13.
  */
 public class IndexActivity extends Activity {
+    Gson gson = new Gson();
+    RestClient client = null;
     ListView projectsList = null;
     AlertDialog.Builder alert = null;
     Resources res = null;
@@ -27,10 +36,21 @@ public class IndexActivity extends Activity {
         alert = new AlertDialog.Builder(this);
 
         projectsList = (ListView) findViewById(R.id.projectsList);
+        ArrayList<String> allProjects = new ArrayList<String>();
 
-        ArrayList<String> projects = new ArrayList<String>();
-        projects.add("project_name");
-        projectsList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, projects));
+        client = new RestClient("http://192.168.100.100:8080/api/project/all");
+
+        try {
+            client.Execute(RestClient.RequestMethod.GET);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        String response = client.getResponse();
+        Project project = gson.fromJson(response, Project.class);
+        allProjects.add(project);
+
+        projectsList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, allProjects));
         projectsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
