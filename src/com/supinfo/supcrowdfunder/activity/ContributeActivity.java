@@ -64,7 +64,7 @@ public class ContributeActivity extends Activity {
             }
         }
     };
-
+    //TODO attention, le contribuant n'est pas le bon (actuellement le user projet) et il faut changer l'id projet
     private DialogInterface.OnClickListener alertValidateListener = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {

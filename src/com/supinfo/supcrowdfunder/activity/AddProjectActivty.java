@@ -9,6 +9,6 @@ import android.os.Bundle;import com.supinfo.supcrowdfunder.R;
 public class AddProjectActivty extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.add_project_activity);
+        setContentView(R.layout.add_project_activity);
     }
 }
