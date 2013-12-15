@@ -12,5 +12,6 @@
                 android:label="ContributeActivity"/>
         <activity android:name=".activity.IndexActivity" android:label="IndexActivity"/>
         <activity android:name=".activity.ProjectDetailsActivity" android:label="ProjectActivity"/>
+        <activity android:name=".activity.AddProjectActivty"/>
     </application>
 </manifest>

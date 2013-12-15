@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SupCrowdfunder-Android.iml" filepath="$PROJECT_DIR$/SupCrowdfunder-Android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Supcrowdfunder-Android.iml" filepath="$PROJECT_DIR$/Supcrowdfunder-Android.iml" />
     </modules>
   </component>
 </project>

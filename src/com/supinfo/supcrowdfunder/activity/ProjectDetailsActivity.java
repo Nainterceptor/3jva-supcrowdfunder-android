@@ -31,7 +31,7 @@ public class ProjectDetailsActivity extends Activity {
     RestClient client = null;
     Button projectButton = null;
 
-    //ce qui suit est pour tester
+    //ce qui suit est pour tester, normalement on récupèrera un objet Project
     Category category = new Category()
             .setName("Catégorie 1")
             .setId(1L);

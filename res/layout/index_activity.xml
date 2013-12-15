@@ -9,6 +9,12 @@
             android:text="@string/indexTitle"
             android:id="@+id/indexTitle" android:layout_alignParentTop="true" android:layout_centerHorizontal="true"
             android:textStyle="bold" android:textSize="20dp"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/indexTitle"
+            android:layout_below="@id/indexTitle"
+            android:textStyle="bold" android:textSize="20dp"/>
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
