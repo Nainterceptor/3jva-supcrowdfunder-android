@@ -3,8 +3,6 @@ package com.supinfo.supcrowdfunder.entity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.sql.Timestamp;
-
 /**
  * Created by Robin on 15/12/13.
  */

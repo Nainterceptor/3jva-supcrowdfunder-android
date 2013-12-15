@@ -1,5 +1,7 @@
-package com.supinfo.supcrowdfunder;
+package com.supinfo.supcrowdfunder.util.rest;
 
+import com.google.gson.Gson;
+import com.supinfo.supcrowdfunder.util.Global;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -13,28 +15,27 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 
-import java.io.*;
-
-
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
 /**
  * Created by Robin on 14/12/13.
  */
-public class RestClient {
+public abstract class AbstractRestClient {
 
-    private ArrayList<NameValuePair> params;
-    private ArrayList <NameValuePair> headers;
-
-    private String url;
-
-    private int responseCode;
-    private String message;
-
-    private String response;
+    protected ArrayList<NameValuePair> params;
+    protected ArrayList <NameValuePair> headers;
+    public enum RequestMethod {GET, POST}
+    protected String url;
+    protected int responseCode;
+    protected String message;
+    protected String response;
+    protected Gson gson;
+    protected Boolean success = false;
 
     public String getResponse() {
         return response;
@@ -48,24 +49,30 @@ public class RestClient {
         return responseCode;
     }
 
-    public RestClient(String url)
+    public AbstractRestClient(String url)
     {
-        this.url = url;
+        this.url = Global.getAPIUrl() + url;
         params = new ArrayList<NameValuePair>();
         headers = new ArrayList<NameValuePair>();
+        this
+            .addHeader("Accept", "*/*")
+            .addHeader("Cache-Control", "no-cache");
+         gson = new Gson();
     }
 
-    public void AddParam(String name, String value)
+    public AbstractRestClient addParam(String name, String value)
     {
         params.add(new BasicNameValuePair(name, value));
+        return this;
     }
 
-    public void AddHeader(String name, String value)
+    public AbstractRestClient addHeader(String name, String value)
     {
         headers.add(new BasicNameValuePair(name, value));
+        return this;
     }
 
-    public void Execute(RequestMethod method) throws Exception
+    public AbstractRestClient Execute(RequestMethod method) throws Exception
     {
         switch(method) {
             case GET:
@@ -78,25 +85,17 @@ public class RestClient {
                     {
                         String paramString = p.getName() + "=" + URLEncoder.encode(p.getValue(),"UTF - 8");
                         if(combinedParams.length() > 1)
-                        {
                             combinedParams  +=  "&" + paramString;
-                        }
                         else
-                        {
                             combinedParams += paramString;
-                        }
                     }
                 }
 
                 HttpGet request = new HttpGet(url + combinedParams);
-
                 //add headers
                 for(NameValuePair h : headers)
-                {
                     request.addHeader(h.getName(), h.getValue());
-                }
-
-                executeRequest(request, url);
+                executeRequest(request);
                 break;
             }
             case POST:
@@ -105,27 +104,19 @@ public class RestClient {
 
                 //add headers
                 for(NameValuePair h : headers)
-                {
                     request.addHeader(h.getName(), h.getValue());
-                }
 
-                if(!params.isEmpty()){
+                if(!params.isEmpty())
                     request.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
-                }
 
-                executeRequest(request, url);
+                executeRequest(request);
                 break;
             }
         }
+        return this;
     }
 
-    public enum RequestMethod
-    {
-        GET,
-        POST
-    }
-
-    private void executeRequest(HttpUriRequest request, String url)
+    protected void executeRequest(HttpUriRequest request)
     {
         HttpClient client = new DefaultHttpClient();
 
@@ -156,12 +147,12 @@ public class RestClient {
         }
     }
 
-    private static String convertStreamToString(InputStream is) {
+    protected static String convertStreamToString(InputStream is) {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
         StringBuilder sb = new StringBuilder();
 
-        String line = null;
+        String line;
         try {
             while ((line = reader.readLine()) != null) {
                 sb.append(line + "\n");
@@ -176,5 +167,9 @@ public class RestClient {
             }
         }
         return sb.toString();
+    }
+
+    public Boolean isSuccess() {
+        return success;
     }
 }

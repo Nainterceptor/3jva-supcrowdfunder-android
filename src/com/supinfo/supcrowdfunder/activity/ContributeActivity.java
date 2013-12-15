@@ -1,6 +1,5 @@
 package com.supinfo.supcrowdfunder.activity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,13 +11,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.supinfo.supcrowdfunder.R;
-import com.supinfo.supcrowdfunder.RestClient;
 import com.supinfo.supcrowdfunder.entity.Project;
+import com.supinfo.supcrowdfunder.util.SuperActivity;
+import com.supinfo.supcrowdfunder.util.rest.ContributeRestClient;
 
 /**
  * Created by Robin on 12/12/13.
  */
-public class ContributeActivity extends Activity {
+public class ContributeActivity extends SuperActivity {
     Resources res = null;
     Button contributeButton = null;
     TextView body = null;
@@ -68,22 +68,16 @@ public class ContributeActivity extends Activity {
     private DialogInterface.OnClickListener alertValidateListener = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
-            RestClient client = new RestClient(res.getString(R.string.URL)+"/project/1/contribute");
-            client.AddParam("email", project.getUser().getEmail());
-            client.AddParam("password", project.getUser().getPassword());
-            client.AddParam("amount", amount.getText().toString());
-            client.AddHeader("Accept", "*/*");
-            client.AddHeader("Cache-Control", "no-cache");
-
-            try {
-                client.Execute(RestClient.RequestMethod.POST);
-            } catch (Exception e) {
-                e.printStackTrace();
+            ContributeRestClient client = new ContributeRestClient(
+                    ContributeActivity.this,
+                    "1",
+                    project.getUser().getEmail(),
+                    project.getUser().getPassword(),
+                    amount.getText().toString()
+            );
+            if (client.isSuccess()) {
+                amount.getText().clear();
             }
-
-            String response = client.getResponse();
-            Toast.makeText(ContributeActivity.this,res.getString(R.string.contributeToastValidate),Toast.LENGTH_LONG).show();
-            amount.getText().clear();
         }
     };
     private DialogInterface.OnClickListener alertCancelListener = new DialogInterface.OnClickListener() {

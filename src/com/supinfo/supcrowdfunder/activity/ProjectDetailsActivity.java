@@ -1,6 +1,5 @@
 package com.supinfo.supcrowdfunder.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -8,16 +7,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import com.supinfo.supcrowdfunder.R;
-import com.supinfo.supcrowdfunder.RestClient;
 import com.supinfo.supcrowdfunder.entity.Category;
 import com.supinfo.supcrowdfunder.entity.Project;
 import com.supinfo.supcrowdfunder.entity.User;
-import org.w3c.dom.Text;
+import com.supinfo.supcrowdfunder.util.SuperActivity;
+import com.supinfo.supcrowdfunder.util.rest.ContributionsRestClient;
 
 /**
  * Created by Fireaxe on 13/12/13.
  */
-public class ProjectDetailsActivity extends Activity {
+public class ProjectDetailsActivity extends SuperActivity {
 
     Resources res = null;
     TextView projectName = null;
@@ -28,7 +27,7 @@ public class ProjectDetailsActivity extends Activity {
     TextView term = null;
     TextView creator = null;
     TextView description = null;
-    RestClient client = null;
+    ContributionsRestClient client = null;
     Button projectButton = null;
 
     //ce qui suit est pour tester, normalement on récupèrera un objet Project
@@ -86,14 +85,8 @@ public class ProjectDetailsActivity extends Activity {
 
         actualCredits = (TextView) findViewById(R.id.projectActualCredits);
         percentage = (TextView) findViewById(R.id.projectPercentage);
-        client = new RestClient(res.getString(R.string.URL)+"/project/"+project.getId().toString()+"/contributions");
-        try {
-            client.Execute(RestClient.RequestMethod.GET);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        client = new ContributionsRestClient(ProjectDetailsActivity.this, project.getId().toString());
         String response = client.getResponse();
-        response = response.substring(0, response.indexOf("\n"));
         Long respLong = Long.parseLong(response);
 
         actualCredits.setText(response + "€");

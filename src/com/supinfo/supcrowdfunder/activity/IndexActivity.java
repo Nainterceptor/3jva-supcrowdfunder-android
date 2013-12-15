@@ -1,16 +1,14 @@
 package com.supinfo.supcrowdfunder.activity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.supinfo.supcrowdfunder.R;
-import com.supinfo.supcrowdfunder.RestClient;
 import com.supinfo.supcrowdfunder.entity.Project;
+import com.supinfo.supcrowdfunder.util.SuperActivity;
+import com.supinfo.supcrowdfunder.util.rest.AllProjectsRestClient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,35 +16,26 @@ import java.util.List;
 /**
  * Created by Fireaxe on 13/12/13.
  */
-public class IndexActivity extends Activity {
+public class IndexActivity extends SuperActivity {
     Gson gson = new Gson();
-    RestClient client = null;
+    AllProjectsRestClient client = null;
     List<Project> projectsList = null;
     ListView projectsName = null;
     AlertDialog.Builder alert = null;
-    Resources res = null;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.index_activity);
 
-        res = getResources();
         alert = new AlertDialog.Builder(this);
 
         projectsName = (ListView) findViewById(R.id.projectsList);
         List<String> allProjects = new ArrayList<String>();
 
-        client = new RestClient("http://192.168.1.21:8080/api/project/all");
-
-        try {
-            client.Execute(RestClient.RequestMethod.GET);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        client = new AllProjectsRestClient(IndexActivity.this);
 
         System.out.println("Coucou");
-        String response = client.getResponse();
-        projectsList = gson.fromJson(response, new TypeToken<List<Project>>(){}.getType());
+        projectsList = client.getProjects();
         for (Project project : projectsList)
             allProjects.add(project.getName());
 
