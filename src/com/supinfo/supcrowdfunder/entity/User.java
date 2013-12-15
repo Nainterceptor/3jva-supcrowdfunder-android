@@ -16,8 +16,8 @@ public class User implements Parcelable {
     protected String address;
     protected String zipCode;
     protected String city;
-    protected Integer sex;
-    protected Integer admin;
+    protected Boolean sex;
+    protected Boolean admin;
     protected String createdAt;
 
     public User (){
@@ -30,13 +30,13 @@ public class User implements Parcelable {
         address = null;
         zipCode = null;
         city = null;
-        sex = 0;
-        admin = 0;
+        sex = false;
+        admin = false;
         createdAt = null;
     }
 
     public User (Long cId, String cEmail, String cPassword, String cSalt, String cFirstname, String cLastname,
-                 String cAddress, String cZipCode, String cCity, Integer cSex, Integer cAdmin, String cCreatedAt){
+                 String cAddress, String cZipCode, String cCity, Boolean cSex, Boolean cAdmin, String cCreatedAt){
         id = cId;
         email = cEmail;
         password = cPassword;
@@ -69,8 +69,8 @@ public class User implements Parcelable {
         dest.writeString(address);
         dest.writeString(zipCode);
         dest.writeString(city);
-        dest.writeInt(sex);
-        dest.writeInt(admin);
+        dest.writeByte((byte) (sex ? 1 : 0));
+        dest.writeByte((byte) (admin ? 1 : 0));
         dest.writeString(createdAt);
     }
 
@@ -96,8 +96,8 @@ public class User implements Parcelable {
         address = in.readString();
         zipCode = in.readString();
         city = in.readString();
-        sex = in.readInt();
-        admin = in.readInt();
+        sex = in.readByte() != 0;
+        admin = in.readByte() != 0;
         createdAt = in.readString();
     }
     public Long getId() {
@@ -181,20 +181,20 @@ public class User implements Parcelable {
         return this;
     }
 
-    public Integer getSex() {
+    public Boolean getSex() {
         return sex;
     }
 
-    public User setSex(Integer sex) {
+    public User setSex(Boolean sex) {
         this.sex = sex;
         return this;
     }
 
-    public Integer getAdmin() {
+    public Boolean getAdmin() {
         return admin;
     }
 
-    public User setAdmin(Integer admin) {
+    public User setAdmin(Boolean admin) {
         this.admin = admin;
         return this;
     }

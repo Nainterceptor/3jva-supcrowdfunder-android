@@ -2,11 +2,8 @@ package com.supinfo.supcrowdfunder.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import com.google.gson.Gson;
@@ -14,7 +11,6 @@ import com.google.gson.reflect.TypeToken;
 import com.supinfo.supcrowdfunder.R;
 import com.supinfo.supcrowdfunder.RestClient;
 import com.supinfo.supcrowdfunder.entity.Project;
-import com.supinfo.supcrowdfunder.entity.ProjectTest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,11 +46,9 @@ public class IndexActivity extends Activity {
 
         System.out.println("Coucou");
         String response = client.getResponse();
-        projectsList = gson.fromJson(response, new TypeToken<List<ProjectTest>>(){}.getType());
+        projectsList = gson.fromJson(response, new TypeToken<List<Project>>(){}.getType());
         for (Project project : projectsList)
             allProjects.add(project.getName());
-        allProjects.add("Test 1");
-        allProjects.add("Test 2");
 
         projectsName.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, allProjects));
 //        projectsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {

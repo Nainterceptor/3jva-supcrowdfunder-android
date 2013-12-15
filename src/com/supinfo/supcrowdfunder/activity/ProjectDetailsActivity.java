@@ -37,7 +37,7 @@ public class ProjectDetailsActivity extends Activity {
             .setId(1L);
     User user = new User()
             .setId(7L)
-            .setAdmin(1)
+            .setAdmin(true)
             .setEmail("foo@bar.com")
             .setFirstname("Foo")
             .setLastname("Bar")
