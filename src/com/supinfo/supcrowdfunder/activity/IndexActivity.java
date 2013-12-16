@@ -46,8 +46,10 @@ public class IndexActivity extends SuperActivity {
 
            @Override
            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-               Intent intent = new Intent(projectsName.getContext(), ProjectDetailsActivity.class);
-               projectsName.getContext().startActivity(intent);
+               Project projectIntent = projectsList.get(i);
+               Intent intent = new Intent(IndexActivity.this, ProjectDetailsActivity.class);
+               intent.putExtra("com.supinfo.supcrowdfunder.activity.PROJECTINTENT",projectIntent);
+               startActivity(intent);
            }
         });
     }
