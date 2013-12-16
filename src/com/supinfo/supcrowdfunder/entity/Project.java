@@ -45,6 +45,10 @@ public class Project implements Parcelable {
         return 0;
     }
 
+    public Long percentToEnd(Long resp) {
+        return resp * 100L / getNeedCredits();
+    }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         // On ajoute les objets dans l'ordre dans lequel on les a déclarés

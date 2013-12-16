@@ -11,6 +11,7 @@ import com.supinfo.supcrowdfunder.R;
 import com.supinfo.supcrowdfunder.entity.Project;
 import com.supinfo.supcrowdfunder.util.SuperActivity;
 import com.supinfo.supcrowdfunder.util.rest.AllProjectsRestClient;
+import com.supinfo.supcrowdfunder.util.rest.ContributionsRestClient;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,6 +23,7 @@ import java.util.Map;
  */
 public class IndexActivity extends SuperActivity {
     AllProjectsRestClient client = null;
+    ContributionsRestClient client2 = null;
     List<Project> projectsList = null;
     ListView projectsName = null;
     AlertDialog.Builder alert = null;
@@ -39,10 +41,13 @@ public class IndexActivity extends SuperActivity {
 
         projectsList = client.getProjects();
         for (Project project : projectsList) {
+            client2 = new ContributionsRestClient(IndexActivity.this, project.getId().toString());
+            String response = client2.getResponse();
+            Long resp = Long.parseLong(response);
             HashMap<String, String> map = new HashMap<String, String>();
             map.put("name", project.getName());
             map.put("details", project.getDetails());
-            map.put("percent", "50%");
+            map.put("percent", String.valueOf(project.percentToEnd(resp) + "%"));
             allProjects.add(map);
         }
 
