@@ -1,5 +1,6 @@
 package com.supinfo.supcrowdfunder.activity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -37,10 +38,11 @@ public class LoginActivity extends SuperActivity {
             );
             if (client.isSuccess()) {
                 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
-                preferences.edit().putString("email", email.getText().toString());
-                preferences.edit().putString("password", password.getText().toString());
-                preferences.edit().putBoolean("connected", true);
-
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("email", email.getText().toString());
+                editor.putString("password", password.getText().toString());
+                editor.putBoolean("connected", true);
+                editor.commit();
             }
         }
     };

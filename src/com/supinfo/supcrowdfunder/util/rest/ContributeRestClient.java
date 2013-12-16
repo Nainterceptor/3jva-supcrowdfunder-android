@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 import com.supinfo.supcrowdfunder.R;
 import com.supinfo.supcrowdfunder.util.Global;
+import com.supinfo.supcrowdfunder.util.SuperActivity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,12 +12,10 @@ import java.util.Map;
 /**
  * Created by nainterceptor on 15/12/13.
  */
-public class ContributeRestClient extends AbstractRestClient {
+public class ContributeRestClient extends AbstractLoggedRestClient {
     protected Map<String, Object> json;
-    public ContributeRestClient(Context context, String id, String email, String password, String amount) {
-        super("/project/" + id + "/contribute");
-        this.addParam("email", email);
-        this.addParam("password", password);
+    public ContributeRestClient(Context context, String id, String amount) {
+        super(context, "/project/" + id + "/contribute");
         this.addParam("amount", amount);
         try {
             this.Execute(ContributeRestClient.RequestMethod.POST);

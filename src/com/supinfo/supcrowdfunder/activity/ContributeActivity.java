@@ -70,9 +70,7 @@ public class ContributeActivity extends SuperActivity {
         public void onClick(DialogInterface dialog, int which) {
             ContributeRestClient client = new ContributeRestClient(
                     ContributeActivity.this,
-                    "1",
-                    project.getUser().getEmail(),
-                    project.getUser().getPassword(),
+                    String.valueOf(project.getId()),
                     amount.getText().toString()
             );
             if (client.isSuccess()) {
