@@ -42,11 +42,12 @@ public class IndexActivity extends SuperActivity {
             HashMap<String, String> map = new HashMap<String, String>();
             map.put("name", project.getName());
             map.put("details", project.getDetails());
+            map.put("percent", "50%");
             allProjects.add(map);
         }
 
-        ListAdapter adapter = new SimpleAdapter(this, allProjects, android.R.layout.simple_list_item_2,
-                new String[] {"name", "details"}, new int[] {android.R.id.text1, android.R.id.text2});
+        ListAdapter adapter = new SimpleAdapter(this, allProjects, R.layout.simple_list_item_3,
+                new String[] {"name", "details", "percent"}, new int[] {R.id.nameBodyList, R.id.detailsBodyList, R.id.percentBodyList});
         projectsName.setAdapter(adapter);
         projectsName.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
