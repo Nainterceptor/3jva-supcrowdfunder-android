@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="vertical">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/loginTitle"
+            android:layout_gravity="center_horizontal"/>
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/loginEmail"
+                android:textStyle="bold"
+                android:gravity="center"
+                />
+        <EditText
+                android:id="@+id/loginEmail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/loginEmailHint"
+                android:inputType="textEmailAddress"
+                android:layout_weight="1"
+                />
+    </LinearLayout>
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/loginPassword"
+                android:textStyle="bold"
+                android:gravity="center"
+                />
+        <EditText
+                android:id="@+id/loginPassword"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/loginPasswordHint"
+                android:inputType="textPassword"
+                android:layout_weight="1"
+                />
+    </LinearLayout>
+    <Button
+            android:id="@+id/loginSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/loginSubmit" />
+</LinearLayout>

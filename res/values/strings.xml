@@ -29,6 +29,14 @@
     <string name="registrationSubmit">S\'inscrire</string>
     <string name="registrationSuccess">Merci de votre inscription.</string>
 
+    <string name="loginTitle">Connexion</string>
+    <string name="loginEmail">E-mail : </string>
+    <string name="loginEmailHint">E-mail</string>
+    <string name="loginPassword">Mot de passe : </string>
+    <string name="loginPasswordHint">Mot de passe</string>
+    <string name="loginSubmit">Se connecter</string>
+    <string name="loginSuccess">Vous êtes bien connecté.</string>
+
     <string name="indexTitle">Liste des projets</string>
     <string name="projectView">Voir</string>
 

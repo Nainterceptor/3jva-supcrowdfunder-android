@@ -32,7 +32,7 @@ public class RegistrationActivity extends SuperActivity {
     private View.OnClickListener registrationListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            RegistrationRestClient client = new RegistrationRestClient(
+            new RegistrationRestClient(
                     RegistrationActivity.this,
                     email.getText().toString(),
                     password.getText().toString(),
