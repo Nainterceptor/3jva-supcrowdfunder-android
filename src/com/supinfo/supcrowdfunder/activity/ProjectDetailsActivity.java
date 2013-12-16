@@ -29,40 +29,15 @@ public class ProjectDetailsActivity extends SuperActivity {
     TextView description = null;
     ContributionsRestClient client = null;
     Button projectButton = null;
-
-    //ce qui suit est pour tester, normalement on récupèrera un objet Project
-    Category category = new Category()
-            .setName("Catégorie 1")
-            .setId(1L);
-    User user = new User()
-            .setId(7L)
-            .setAdmin(true)
-            .setEmail("foo@bar.com")
-            .setFirstname("Foo")
-            .setLastname("Bar")
-            .setPassword("foobar");
-    Project project = new Project()
-            .setId(1L)
-            .setCreatedAt("05-12-2013")
-            .setDetails("Test écrite" +
-                    "alors voyons voir jsqou on peut aller \n\n" +
-                    "je suis toujours en train décrire un text pour voir si le scroll marche bien" +
-                    "ljfbgd ihdfigndfg podfpjgd fpojdfg pojdfgpjdfg phidfg pojdfgopjdfg opjdfpgjojpjdfgpj ojdfpgoj opjdfgpj" +
-                    "ljfbgd ihdfigndfg podfpjgd fpojdfg pojdfgpjdfg phidfg pojdfgopjdfg opjdfpgjojpjdfgpj ojdfpgoj opjdfgpj" +
-                    "ljfbgd ihdfigndfg podfpjgd fpojdfg pojdfgpjdfg phidfg pojdfgopjdfg opjdfpgjojpjdfgpj ojdfpgoj opjdfgpj" +
-                    "ljfbgd ihdfigndfg podfpjgd fpojdfg pojdfgpjdfg phidfg pojdfgopjdfg opjdfpgjojpjdfgpj ojdfpgoj opjdfgpj" +
-                    "ljfbgd ihdfigndfg podfpjgd fpojdfg pojdfgpjdfg phidfg pojdfgopjdfg opjdfpgjojpjdfgpj ojdfpgoj opjdfgpj" +
-                    "ljfbgd ihdfigndfg podfpjgd fpojdfg pojdfgpjdfg phidfg pojdfgopjdfg opjdfpgjojpjdfgpj ojdfpgoj opjdfgpj" +
-                    "ljfbgd ihdfigndfg podfpjgd fpojdfg pojdfgpjdfg phidfg pojdfgopjdfg opjdfpgjojpjdfgpj ojdfpgoj opjdfgpj")
-            .setName("Test 1")
-            .setNeedCredits(850L)
-            .setTerm("03-02-2014")
-            .setCategory(category)
-            .setUser(user);
+    Project project = null;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.project_details_activity);
+
+        Intent i = getIntent();
+
+        project = i.getParcelableExtra("com.supinfo.supcrowdfunder.activity.PROJECTINTENT");
 
         res = getResources();
         projectName = (TextView) findViewById(R.id.projectName);
