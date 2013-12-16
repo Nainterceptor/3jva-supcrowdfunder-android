@@ -30,7 +30,7 @@
             <TextView
                     android:id="@+id/projectNeedCredits"
                     android:gravity="right"
-                    android:padding="3dp"/>
+                    android:paddingRight="5dp"/>
         </TableRow>
         <View
                 android:layout_height="1dip"
@@ -44,7 +44,7 @@
             <TextView
                     android:id="@+id/projectActualCredits"
                     android:gravity="right"
-                    android:padding="3dp"/>
+                    android:paddingRight="5dp"/>
         </TableRow>
         <View
                 android:layout_height="1dip"
@@ -58,7 +58,7 @@
             <TextView
                     android:id="@+id/projectPercentage"
                     android:gravity="right"
-                    android:padding="3dp"/>
+                    android:paddingRight="5dp"/>
         </TableRow>
         <View
                 android:layout_height="1dip"
@@ -72,7 +72,7 @@
             <TextView
                     android:id="@+id/projectCreatedAt"
                     android:gravity="right"
-                    android:padding="3dp"/>
+                    android:paddingRight="5dp"/>
         </TableRow>
         <View
                 android:layout_height="1dip"
@@ -86,7 +86,7 @@
             <TextView
                     android:id="@+id/projectTerm"
                     android:gravity="right"
-                    android:padding="3dp"/>
+                    android:paddingRight="5dp"/>
         </TableRow>
         <View
                 android:layout_height="1dip"
@@ -100,7 +100,7 @@
             <TextView
                     android:id="@+id/projectCreator"
                     android:gravity="right"
-                    android:padding="3dp"/>
+                    android:paddingRight="5dp"/>
         </TableRow>
         <View
                 android:layout_height="3dip"
