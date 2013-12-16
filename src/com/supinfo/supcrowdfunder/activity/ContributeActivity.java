@@ -86,6 +86,4 @@ public class ContributeActivity extends SuperActivity {
             Toast.makeText(ContributeActivity.this,res.getString(R.string.contributeToastCancel),Toast.LENGTH_SHORT).show();
         }
     };
-
-
 }

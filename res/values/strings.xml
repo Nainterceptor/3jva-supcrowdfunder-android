@@ -16,7 +16,6 @@
     <string name="contributeToastInvalid">Le montant doit être supérieur à 0</string>
 
     <string name="registrationTitle">Inscription</string>
-
     <string name="registrationEmail">E-mail : </string>
     <string name="registrationEmailHint">E-mail</string>
     <string name="registrationPassword">Mot de passe : </string>
@@ -55,5 +54,5 @@
     <string name="restError">Une erreur est survenue.</string>
     <string name="validate">Confirmer</string>
     <string name="cancel">Annuler</string>
-    <string name="URL">"http://192.168.1.21:8080/api"</string>
+    <string name="URL">"http://192.168.1.10:8080/api"</string>
 </resources>
