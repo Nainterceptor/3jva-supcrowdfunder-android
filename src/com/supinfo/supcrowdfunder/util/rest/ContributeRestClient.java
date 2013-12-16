@@ -25,7 +25,7 @@ public class ContributeRestClient extends AbstractRestClient {
             Toast.makeText(context, Global.getRes().getString(R.string.restError), Toast.LENGTH_LONG).show();
         }
         json = gson.fromJson(response, HashMap.class);
-        if (json.get("error").getClass().getName().equals("java.lang.Boolean") && json.get("error").equals(false)) {
+        if (json.get("error") == null) {
             Toast.makeText(context, Global.getRes().getString(R.string.contributeToastValidate),Toast.LENGTH_LONG).show();
             this.success = true;
         } else {

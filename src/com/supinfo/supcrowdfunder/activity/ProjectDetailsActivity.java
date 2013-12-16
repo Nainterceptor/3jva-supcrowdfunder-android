@@ -82,7 +82,7 @@ public class ProjectDetailsActivity extends SuperActivity {
         description.setText(project.getDetails());
     }
     public void onResume(){
-
+        super.onResume();
         actualCredits = (TextView) findViewById(R.id.projectActualCredits);
         percentage = (TextView) findViewById(R.id.projectPercentage);
         client = new ContributionsRestClient(ProjectDetailsActivity.this, project.getId().toString());
