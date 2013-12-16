@@ -20,8 +20,5 @@ public class CategoryActivity extends Activity {
 
         ListView categories = (ListView) findViewById(R.id.listCategory);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, laListeDesTrucsQueTaAMettre);
-
-        categories.setAdapter(adapter);
     }
 }

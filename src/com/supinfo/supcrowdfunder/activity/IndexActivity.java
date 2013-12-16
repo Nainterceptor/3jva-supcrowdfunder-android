@@ -1,7 +1,11 @@
 package com.supinfo.supcrowdfunder.activity;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import com.google.gson.Gson;
@@ -17,7 +21,6 @@ import java.util.List;
  * Created by Fireaxe on 13/12/13.
  */
 public class IndexActivity extends SuperActivity {
-    Gson gson = new Gson();
     AllProjectsRestClient client = null;
     List<Project> projectsList = null;
     ListView projectsName = null;
@@ -34,19 +37,18 @@ public class IndexActivity extends SuperActivity {
 
         client = new AllProjectsRestClient(IndexActivity.this);
 
-        System.out.println("Coucou");
         projectsList = client.getProjects();
         for (Project project : projectsList)
             allProjects.add(project.getName());
 
         projectsName.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, allProjects));
-//        projectsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Intent intent = new Intent(IndexActivity.this, ProjectDetailsActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        projectsName.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+           @Override
+           public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+               Intent intent = new Intent(projectsName.getContext(), ProjectDetailsActivity.class);
+               projectsName.getContext().startActivity(intent);
+           }
+        });
     }
 }
