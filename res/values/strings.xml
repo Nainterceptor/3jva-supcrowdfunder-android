@@ -97,7 +97,6 @@
     <string name="restError">Une erreur est survenue.</string>
     <string name="validate">Confirmer</string>
     <string name="cancel">Annuler</string>
-    <string name="URL">"http://10.1.18.219:8080/api"</string>
 
     <string name="yes">Oui</string>
     <string name="no">Non</string>
