@@ -28,6 +28,7 @@ public class RegistrationRestClient extends AbstractRestClient {
             json = gson.fromJson(response, HashMap.class);
             if (json.get("error").getClass().getName().equals("java.lang.Boolean") && json.get("error").equals(false)) {
                 Toast.makeText(context, Global.getRes().getString(R.string.registrationSuccess), Toast.LENGTH_LONG).show();
+                this.success = true;
             } else {
                 Toast.makeText(context, (String) json.get("error"), Toast.LENGTH_LONG).show();
             }

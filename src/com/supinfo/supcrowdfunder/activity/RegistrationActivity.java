@@ -1,6 +1,8 @@
 package com.supinfo.supcrowdfunder.activity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,7 +36,7 @@ public class RegistrationActivity extends SuperActivity {
     private View.OnClickListener registrationListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            new RegistrationRestClient(
+            RegistrationRestClient client = new RegistrationRestClient(
                     RegistrationActivity.this,
                     email.getText().toString(),
                     password.getText().toString(),
@@ -42,6 +44,14 @@ public class RegistrationActivity extends SuperActivity {
                     firstname.getText().toString(),
                     lastname.getText().toString()
             );
+            if (client.isSuccess()) {
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(RegistrationActivity.this);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("email", email.getText().toString());
+                editor.putString("password", password.getText().toString());
+                editor.putBoolean("logged", true);
+                editor.commit();
+            }
         }
     };
 }
