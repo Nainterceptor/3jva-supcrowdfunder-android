@@ -1,14 +1,16 @@
 package com.supinfo.supcrowdfunder.activity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.*;
 import com.supinfo.supcrowdfunder.R;
 import com.supinfo.supcrowdfunder.util.SuperLoggedActivity;
 import com.supinfo.supcrowdfunder.util.rest.EditUserRestClient;
 import com.supinfo.supcrowdfunder.util.rest.UserRestClient;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,9 +25,11 @@ public class EditUserActivity extends SuperLoggedActivity {
     EditText address = null;
     EditText zipCode = null;
     EditText city = null;
-    EditText sex = null;
+    Spinner sex = null;
     UserRestClient client = null;
     Button editButton = null;
+    String projectSex = null;
+    List<String> sexChoice = null;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +42,17 @@ public class EditUserActivity extends SuperLoggedActivity {
         address = (EditText) findViewById(R.id.edituserAddress);
         zipCode = (EditText) findViewById(R.id.edituserZipCode);
         city = (EditText) findViewById(R.id.edituserCity);
+        sex = (Spinner) findViewById(R.id.edituserSex);
+
+        sexChoice = new ArrayList<String>();
+        sexChoice.add("Homme");
+        sexChoice.add("Femme");
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, sexChoice);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sex.setAdapter(adapter);
+
+        sex.setOnItemSelectedListener(new CustomOnItemSListener());
     }
 
     public void onResume() {
@@ -54,6 +69,19 @@ public class EditUserActivity extends SuperLoggedActivity {
         editButton.setOnClickListener(editListener);
     }
 
+    public class CustomOnItemSListener extends Activity implements
+            AdapterView.OnItemSelectedListener {
+
+        public void onItemSelected(AdapterView<?> parent, View view, int pos,
+                                   long id) {
+            projectSex = sexChoice.get(pos);
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parentView) {
+        }
+    }
+
     private View.OnClickListener editListener = new View.OnClickListener() {
         public void onClick(View v) {
             new EditUserRestClient(
@@ -66,7 +94,7 @@ public class EditUserActivity extends SuperLoggedActivity {
                     address.getText().toString(),
                     zipCode.getText().toString(),
                     city.getText().toString(),
-                    "true" //todo: mettre le sex ici
+                    projectSex
 
             );
         }
