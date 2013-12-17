@@ -10,11 +10,25 @@
             android:id="@+id/indexTitle" android:layout_alignParentTop="true" android:layout_centerHorizontal="true"
             android:textStyle="bold" android:textSize="25dp"/>
 
-    <Spinner
-            android:id="@+id/indexCategoriesSpinner"
-            android:layout_width="wrap_content"
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/linearLayout" android:layout_below="@+id/indexTitle"/>
+            android:layout_below="@+id/indexTitle">
+
+        <Spinner
+                android:id="@+id/indexCategoriesSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"/>
+
+        <Button
+                android:id="@+id/indexAddProject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="50" android:text="@string/addProjectTitle"/>
+
+    </LinearLayout>
 
     <LinearLayout
             android:orientation="vertical"

@@ -48,7 +48,7 @@
     <string name="projectDescription">Description :</string>
     <string name="projectPercentage">Pourcentage d\'avancement</string>
     <string name="projectButton">Participer</string>
-    
+
     <string name="addProjectTitle">Ajouter un projet</string>
     <string name="addProjectName">Nom du projet</string>
     <string name="addProjectNameHint">Nom du projet</string>
@@ -58,6 +58,7 @@
     <string name="addProjectCategory">Catégorie</string>
     <string name="addProjectTerm">Date d\'échéance</string>
     <string name="addProjectButton">Envoyer</string>
+    <string name="addProjectSuccess">Projet crée</string>
 
     <string name="restError">Une erreur est survenue.</string>
     <string name="validate">Confirmer</string>

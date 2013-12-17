@@ -1,6 +1,8 @@
 package com.supinfo.supcrowdfunder.activity;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +11,9 @@ import com.supinfo.supcrowdfunder.R;
 import com.supinfo.supcrowdfunder.entity.Category;
 import com.supinfo.supcrowdfunder.util.DateTool;
 import com.supinfo.supcrowdfunder.util.SuperActivity;
+import com.supinfo.supcrowdfunder.util.rest.AddProjectRestClient;
 import com.supinfo.supcrowdfunder.util.rest.AllCategoriesRestClient;
+import com.supinfo.supcrowdfunder.util.rest.RegistrationRestClient;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -30,12 +34,15 @@ public class AddProjectActivity extends SuperActivity {
     Spinner categoriesSpinner = null;
     Button projectTerm = null;
     Button projectButton = null;
-    Calendar currentDate = null;
+    String termDate = null;
+    Category projectCategory = null;
+    boolean onLoad;
 
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_project_activity);
+        onLoad = true;
 
         res = getResources();
         projectName = (EditText) findViewById(R.id.addProjectName);
@@ -59,7 +66,10 @@ public class AddProjectActivity extends SuperActivity {
 
         projectTerm.setText(DateTool.calendarString(defaultDate));
         projectTerm.setOnClickListener(termListener);
+        categoriesSpinner.setOnItemSelectedListener(new categoriesListener());
+        projectButton.setOnClickListener(projectAddListener);
     }
+
     private View.OnClickListener termListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -69,11 +79,40 @@ public class AddProjectActivity extends SuperActivity {
             datePicker.show();
         }
     };
+
     private DatePickerDialog.OnDateSetListener dateListener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker datePicker, int i, int i2, int i3) {
             projectTerm.setText(DateTool.datePickerString(datePicker));
+            termDate = DateTool.datePickerString(datePicker);
         }
     };
 
+    public class categoriesListener extends Activity implements
+            AdapterView.OnItemSelectedListener {
+
+        public void onItemSelected(AdapterView<?> parent, View view, int pos,
+                                   long id) {
+            if(!onLoad) {
+                projectCategory = categoriesList.get(pos);
+            } onLoad = false;
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parentView) {}
+    }
+
+    private View.OnClickListener projectAddListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            new AddProjectRestClient(
+                    AddProjectActivity.this,
+                    projectName.getText().toString(),
+                    projectDescription.getText().toString(),
+                    projectCategory.getId().toString(),
+                    projectNeedCredits.getText().toString(),
+                    termDate
+            );
+        }
+    };
 }

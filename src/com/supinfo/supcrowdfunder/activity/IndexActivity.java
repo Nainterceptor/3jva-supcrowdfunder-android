@@ -28,6 +28,7 @@ public class IndexActivity extends SuperActivity {
     ListView projectsName = null;
     List<Category> categoriesList = null;
     Spinner categoriesSpinner = null;
+    Button indexAddProject = null;
     boolean onLoad;
 
     public void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,7 @@ public class IndexActivity extends SuperActivity {
         List<HashMap<String, String>> allProjects = new ArrayList<HashMap<String, String>>();
         List<String> allCategories = new ArrayList<String>();
 
+        indexAddProject = (Button) findViewById(R.id.indexAddProject);
         projectsName = (ListView) findViewById(R.id.projectsList);
         categoriesSpinner = (Spinner) findViewById(R.id.indexCategoriesSpinner);
 
@@ -76,6 +78,7 @@ public class IndexActivity extends SuperActivity {
                 new int[] {R.id.nameBodyList, R.id.detailsBodyList, R.id.percentBodyList});
         projectsName.setAdapter(adapter);
         projectsName.setOnItemClickListener(new CustomOnItemClickListener());
+        indexAddProject.setOnClickListener(new CustomOnClickListenerAddProject());
     }
 
     public class CustomOnItemClickListener extends Activity implements
@@ -86,6 +89,16 @@ public class IndexActivity extends SuperActivity {
             Project projectIntent = projectsList.get(i);
             Intent intent = new Intent(IndexActivity.this, ProjectDetailsActivity.class);
             intent.putExtra("com.supinfo.supcrowdfunder.activity.PROJECTINTENT", projectIntent);
+            IndexActivity.this.startActivity(intent);
+        }
+    }
+
+    public class CustomOnClickListenerAddProject extends Activity implements
+            AdapterView.OnClickListener {
+
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(IndexActivity.this, AddProjectActivity.class);
             IndexActivity.this.startActivity(intent);
         }
     }
@@ -104,9 +117,6 @@ public class IndexActivity extends SuperActivity {
         }
 
         @Override
-        public void onNothingSelected(AdapterView<?> parentView) {
-            // TODO Auto-generated method stub
-
-        }
+        public void onNothingSelected(AdapterView<?> parentView) {}
     }
 }
