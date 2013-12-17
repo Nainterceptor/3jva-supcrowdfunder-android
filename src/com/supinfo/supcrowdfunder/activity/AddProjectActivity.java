@@ -1,0 +1,79 @@
+package com.supinfo.supcrowdfunder.activity;
+
+import android.app.DatePickerDialog;
+import android.content.res.Resources;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.*;
+import com.supinfo.supcrowdfunder.R;
+import com.supinfo.supcrowdfunder.entity.Category;
+import com.supinfo.supcrowdfunder.util.DateTool;
+import com.supinfo.supcrowdfunder.util.SuperActivity;
+import com.supinfo.supcrowdfunder.util.rest.AllCategoriesRestClient;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
+/**
+ * Created by Robin on 15/12/13.
+ */
+public class AddProjectActivity extends SuperActivity {
+    Resources res = null;
+    AllCategoriesRestClient client = null;
+    EditText projectName = null;
+    EditText projectNeedCredits = null;
+    EditText projectDescription = null;
+    DatePickerDialog datePicker = null;
+    Calendar defaultDate = null;
+    List<Category> categoriesList = null;
+    Spinner categoriesSpinner = null;
+    Button projectTerm = null;
+    Button projectButton = null;
+    Calendar currentDate = null;
+
+
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.add_project_activity);
+
+        res = getResources();
+        projectName = (EditText) findViewById(R.id.addProjectName);
+        projectNeedCredits = (EditText) findViewById(R.id.addProjectNeedCredits);
+        projectDescription = (EditText) findViewById(R.id.addProjectDescription);
+        categoriesSpinner = (Spinner) findViewById(R.id.addProjectCategory);
+        projectTerm = (Button) findViewById(R.id.addProjectTerm);
+        projectButton = (Button) findViewById(R.id.addProjectButton);
+
+        defaultDate = Calendar.getInstance();
+
+        List<String> allCategories = new ArrayList<String>();
+        client = new AllCategoriesRestClient(AddProjectActivity.this);
+        categoriesList = client.getCategories();
+        for (Category category : categoriesList){
+            allCategories.add(category.getName());
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, allCategories);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        categoriesSpinner.setAdapter(adapter);
+
+        projectTerm.setText(DateTool.calendarString(defaultDate));
+        projectTerm.setOnClickListener(termListener);
+    }
+    private View.OnClickListener termListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            datePicker = new DatePickerDialog(AddProjectActivity.this, dateListener,
+                    defaultDate.get(Calendar.YEAR),defaultDate.get(Calendar.MONTH),
+                    defaultDate.get(Calendar.DAY_OF_MONTH));
+            datePicker.show();
+        }
+    };
+    private DatePickerDialog.OnDateSetListener dateListener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker datePicker, int i, int i2, int i3) {
+            projectTerm.setText(DateTool.datePickerString(datePicker));
+        }
+    };
+
+}

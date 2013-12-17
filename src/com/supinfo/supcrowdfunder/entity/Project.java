@@ -131,7 +131,7 @@ public class Project implements Parcelable {
     }
 
     public String getTerm() {
-        return term;
+        return term.substring(0, 10);
     }
 
     public Project setTerm(String term) {
@@ -149,7 +149,7 @@ public class Project implements Parcelable {
     }
 
     public String getCreatedAt() {
-        return createdAt;
+        return createdAt.substring(0, 10);
     }
 
     public Project setCreatedAt(String createdAt) {
