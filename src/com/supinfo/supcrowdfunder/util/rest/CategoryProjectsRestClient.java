@@ -23,13 +23,12 @@ public class CategoryProjectsRestClient extends AbstractRestClient {
         super("/project/category/" + id);
         try {
             this.Execute(ContributionsRestClient.RequestMethod.GET);
+            response = response.substring(0, response.indexOf("\n"));
+            projects = gson.fromJson(response, new TypeToken<List<Project>>() {}.getType());
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(context, Global.getRes().getString(R.string.restError), Toast.LENGTH_LONG).show();
         }
-        response = response.substring(0, response.indexOf("\n"));
-        projects = gson.fromJson(response, new TypeToken<List<Project>>() {
-        }.getType());
     }
 
     public List<Project> getProjects() {

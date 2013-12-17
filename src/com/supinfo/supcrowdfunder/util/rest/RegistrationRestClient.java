@@ -23,14 +23,14 @@ public class RegistrationRestClient extends AbstractRestClient {
                 .addParam("confirmPassword", passwordConfirm)
                 .addParam("firstname", firstname)
                 .addParam("lastname", lastname);
-        json = gson.fromJson(response, HashMap.class);
-        if (json.get("error").getClass().getName().equals("java.lang.Boolean") && json.get("error").equals(false)) {
-            Toast.makeText(context, Global.getRes().getString(R.string.registrationSuccess), Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(context, (String) json.get("error"), Toast.LENGTH_LONG).show();
-        }
         try {
             this.Execute(RegistrationRestClient.RequestMethod.POST);
+            json = gson.fromJson(response, HashMap.class);
+            if (json.get("error").getClass().getName().equals("java.lang.Boolean") && json.get("error").equals(false)) {
+                Toast.makeText(context, Global.getRes().getString(R.string.registrationSuccess), Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(context, (String) json.get("error"), Toast.LENGTH_LONG).show();
+            }
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(context, Global.getRes().getString(R.string.restError), Toast.LENGTH_LONG).show();
