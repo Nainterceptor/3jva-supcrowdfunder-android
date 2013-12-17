@@ -23,7 +23,7 @@ public abstract class SuperActivity extends Activity {
         super.onCreate(savedInstanceState);
         res = getResources();
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        Global.setAPIUrl(res.getString(R.string.URL));
+        Global.setAPIUrl("http://10.1.18.219:8080/api");
         Global.setRes(res);
     }
 

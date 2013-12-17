@@ -1,6 +1,6 @@
 package com.supinfo.supcrowdfunder.util.rest;
 
-import com.google.gson.Gson;
+import com.google.gson.*;
 import com.supinfo.supcrowdfunder.util.Global;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
