@@ -2,6 +2,7 @@ package com.supinfo.supcrowdfunder.entity;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import com.supinfo.supcrowdfunder.util.TextHelper;
 
 /**
  * Created by Robin on 15/12/13.
@@ -47,6 +48,14 @@ public class Project implements Parcelable {
 
     public Long percentToEnd(Long resp) {
         return resp * 100L / getNeedCredits();
+    }
+
+    public String shortDescribe() {
+        return this.shortDescribe(50);
+    }
+
+    public String shortDescribe(int n) {
+        return (TextHelper.truncateAfterWords(n, details));
     }
 
     @Override

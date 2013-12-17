@@ -1,22 +1,21 @@
 package com.supinfo.supcrowdfunder.activity;
 
-import android.app.AlertDialog;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.*;
-import com.google.gson.Gson;
 import com.supinfo.supcrowdfunder.R;
+import com.supinfo.supcrowdfunder.entity.Category;
 import com.supinfo.supcrowdfunder.entity.Project;
 import com.supinfo.supcrowdfunder.util.SuperActivity;
+import com.supinfo.supcrowdfunder.util.rest.AllCategoriesRestClient;
 import com.supinfo.supcrowdfunder.util.rest.AllProjectsRestClient;
 import com.supinfo.supcrowdfunder.util.rest.ContributionsRestClient;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Fireaxe on 13/12/13.
@@ -24,20 +23,41 @@ import java.util.Map;
 public class IndexActivity extends SuperActivity {
     AllProjectsRestClient client = null;
     ContributionsRestClient client2 = null;
+    AllCategoriesRestClient client3 = null;
     List<Project> projectsList = null;
     ListView projectsName = null;
-    AlertDialog.Builder alert = null;
+    List<Category> categoriesList = null;
+    Spinner categoriesSpinner = null;
+    boolean onLoad;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.index_activity);
+    }
 
-        alert = new AlertDialog.Builder(this);
+    public void onResume() {
+        super.onResume();
+
+        onLoad = true;
+        List<HashMap<String, String>> allProjects = new ArrayList<HashMap<String, String>>();
+        List<String> allCategories = new ArrayList<String>();
 
         projectsName = (ListView) findViewById(R.id.projectsList);
-        List<HashMap<String, String>> allProjects = new ArrayList<HashMap<String, String>>();
+        categoriesSpinner = (Spinner) findViewById(R.id.indexCategoriesSpinner);
 
         client = new AllProjectsRestClient(IndexActivity.this);
+        client3 = new AllCategoriesRestClient(IndexActivity.this);
+
+        categoriesList = client3.getCategories();
+        allCategories.add("Catégories");
+        for (Category category : categoriesList){
+            allCategories.add(category.getName());
+        }
+
+        ArrayAdapter<String> adapterCat = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, allCategories);
+        adapterCat.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        categoriesSpinner.setAdapter(adapterCat);
+        categoriesSpinner.setOnItemSelectedListener(new CustomOnItemSelectedListener());
 
         projectsList = client.getProjects();
         for (Project project : projectsList) {
@@ -46,23 +66,47 @@ public class IndexActivity extends SuperActivity {
             Long resp = Long.parseLong(response);
             HashMap<String, String> map = new HashMap<String, String>();
             map.put("name", project.getName());
-            map.put("details", project.getDetails());
+            map.put("details", project.shortDescribe());
             map.put("percent", String.valueOf(project.percentToEnd(resp) + "%"));
             allProjects.add(map);
         }
 
         ListAdapter adapter = new SimpleAdapter(this, allProjects, R.layout.simple_list_item_3,
-                new String[] {"name", "details", "percent"}, new int[] {R.id.nameBodyList, R.id.detailsBodyList, R.id.percentBodyList});
+                new String[] {"name", "details", "percent"},
+                new int[] {R.id.nameBodyList, R.id.detailsBodyList, R.id.percentBodyList});
         projectsName.setAdapter(adapter);
-        projectsName.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        projectsName.setOnItemClickListener(new CustomOnItemClickListener());
+    }
 
-           @Override
-           public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-               Project projectIntent = projectsList.get(i);
-               Intent intent = new Intent(IndexActivity.this, ProjectDetailsActivity.class);
-               intent.putExtra("com.supinfo.supcrowdfunder.activity.PROJECTINTENT", projectIntent);
-               startActivity(intent);
-           }
-        });
+    public class CustomOnItemClickListener extends Activity implements
+            AdapterView.OnItemClickListener {
+
+        @Override
+        public void onItemClick(AdapterView <?> adapterView, View view, int i, long l) {
+            Project projectIntent = projectsList.get(i);
+            Intent intent = new Intent(IndexActivity.this, ProjectDetailsActivity.class);
+            intent.putExtra("com.supinfo.supcrowdfunder.activity.PROJECTINTENT", projectIntent);
+            IndexActivity.this.startActivity(intent);
+        }
+    }
+
+    public class CustomOnItemSelectedListener extends Activity implements
+            AdapterView.OnItemSelectedListener {
+
+        public void onItemSelected(AdapterView<?> parent, View view, int pos,
+                                   long id) {
+            if(!onLoad) {
+                Category categoryIntent = categoriesList.get(pos - 1);
+                Intent intent = new Intent(IndexActivity.this, CategoryActivity.class);
+                intent.putExtra("com.supinfo.supcrowdfunder.activity.CATEGORYINTENT", categoryIntent);
+                IndexActivity.this.startActivity(intent);
+            } onLoad = false;
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parentView) {
+            // TODO Auto-generated method stub
+
+        }
     }
 }
