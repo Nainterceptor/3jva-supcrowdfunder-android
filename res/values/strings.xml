@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Supcrowdfunder-Android</string>
 
+    <string name="categoryTitle">Projets de cette catégorie</string>
     <string name="contributeButton">Contribuer</string>
     <string name="contributeAmount">Montant : </string>
     <string name="contributeHint">Montant en €</string>

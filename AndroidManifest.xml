@@ -7,7 +7,7 @@
             android:icon="@drawable/icon"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Holo.Light">
-        <activity android:name=".activity.IndexActivity" android:label="IndexActivity">
+        <activity android:name=".activity.IndexActivity" android:label="@string/indexTitle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -17,7 +17,7 @@
         <activity android:name=".activity.ProjectDetailsActivity" />
         <activity android:name=".activity.AddProjectActivity" android:label="@string/addProjectTitle" />
         <activity android:name=".activity.RegistrationActivity" android:label="@string/registrationTitle" />
-        <activity android:name=".activity.CategoryActivity" />
+        <activity android:name=".activity.CategoryActivity" android:label="@string/categoryTitle"/>
         <activity android:name=".activity.LoginActivity" android:label="@string/loginTitle" />
         <activity android:name=".activity.LogoutActivity" android:label="@string/menuLogout" />
         <activity android:name=".activity.ViewUserActivity" android:label="@string/viewuserTitle" />
