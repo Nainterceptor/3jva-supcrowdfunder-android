@@ -20,7 +20,7 @@ public class User implements Parcelable {
     protected Boolean admin;
     protected String createdAt;
 
-    public User (){
+    public User() {
         id = null;
         email = null;
         password = null;
@@ -35,8 +35,8 @@ public class User implements Parcelable {
         createdAt = null;
     }
 
-    public User (Long cId, String cEmail, String cPassword, String cSalt, String cFirstname, String cLastname,
-                 String cAddress, String cZipCode, String cCity, Boolean cSex, Boolean cAdmin, String cCreatedAt){
+    public User(Long cId, String cEmail, String cPassword, String cSalt, String cFirstname, String cLastname,
+                String cAddress, String cZipCode, String cCity, Boolean cSex, Boolean cAdmin, String cCreatedAt) {
         id = cId;
         email = cEmail;
         password = cPassword;
@@ -100,6 +100,7 @@ public class User implements Parcelable {
         admin = in.readByte() != 0;
         createdAt = in.readString();
     }
+
     public Long getId() {
         return id;
     }
@@ -203,7 +204,7 @@ public class User implements Parcelable {
         return createdAt;
     }
 
-    public User setCreatedAt(String  createdAt) {
+    public User setCreatedAt(String createdAt) {
         this.createdAt = createdAt.substring(0, 10);
         return this;
     }

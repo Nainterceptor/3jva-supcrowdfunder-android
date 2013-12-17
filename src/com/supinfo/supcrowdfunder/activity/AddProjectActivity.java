@@ -2,7 +2,6 @@ package com.supinfo.supcrowdfunder.activity;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
@@ -10,10 +9,9 @@ import android.widget.*;
 import com.supinfo.supcrowdfunder.R;
 import com.supinfo.supcrowdfunder.entity.Category;
 import com.supinfo.supcrowdfunder.util.DateTool;
-import com.supinfo.supcrowdfunder.util.SuperActivity;
+import com.supinfo.supcrowdfunder.util.SuperLoggedActivity;
 import com.supinfo.supcrowdfunder.util.rest.AddProjectRestClient;
 import com.supinfo.supcrowdfunder.util.rest.AllCategoriesRestClient;
-import com.supinfo.supcrowdfunder.util.rest.RegistrationRestClient;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -22,7 +20,7 @@ import java.util.List;
 /**
  * Created by Robin on 15/12/13.
  */
-public class AddProjectActivity extends SuperActivity {
+public class AddProjectActivity extends SuperLoggedActivity {
     Resources res = null;
     AllCategoriesRestClient client = null;
     EditText projectName = null;
@@ -57,7 +55,7 @@ public class AddProjectActivity extends SuperActivity {
         List<String> allCategories = new ArrayList<String>();
         client = new AllCategoriesRestClient(AddProjectActivity.this);
         categoriesList = client.getCategories();
-        for (Category category : categoriesList){
+        for (Category category : categoriesList) {
             allCategories.add(category.getName());
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, allCategories);
@@ -74,7 +72,7 @@ public class AddProjectActivity extends SuperActivity {
         @Override
         public void onClick(View view) {
             datePicker = new DatePickerDialog(AddProjectActivity.this, dateListener,
-                    defaultDate.get(Calendar.YEAR),defaultDate.get(Calendar.MONTH),
+                    defaultDate.get(Calendar.YEAR), defaultDate.get(Calendar.MONTH),
                     defaultDate.get(Calendar.DAY_OF_MONTH));
             datePicker.show();
         }
@@ -93,13 +91,15 @@ public class AddProjectActivity extends SuperActivity {
 
         public void onItemSelected(AdapterView<?> parent, View view, int pos,
                                    long id) {
-            if(!onLoad) {
+            if (!onLoad) {
                 projectCategory = categoriesList.get(pos);
-            } onLoad = false;
+            }
+            onLoad = false;
         }
 
         @Override
-        public void onNothingSelected(AdapterView<?> parentView) {}
+        public void onNothingSelected(AdapterView<?> parentView) {
+        }
     }
 
     private View.OnClickListener projectAddListener = new View.OnClickListener() {

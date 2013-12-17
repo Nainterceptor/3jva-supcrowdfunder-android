@@ -16,10 +16,10 @@ import java.util.List;
  * Time: 11:43
  * To change this template use File | Settings | File Templates.
  */
-public class CategoryProjectsRestClient extends AbstractRestClient{
+public class CategoryProjectsRestClient extends AbstractRestClient {
     private List<Project> projects;
-    public CategoryProjectsRestClient(Context context, String id)
-    {
+
+    public CategoryProjectsRestClient(Context context, String id) {
         super("/project/category/" + id);
         try {
             this.Execute(ContributionsRestClient.RequestMethod.GET);
@@ -28,7 +28,8 @@ public class CategoryProjectsRestClient extends AbstractRestClient{
             Toast.makeText(context, Global.getRes().getString(R.string.restError), Toast.LENGTH_LONG).show();
         }
         response = response.substring(0, response.indexOf("\n"));
-        projects = gson.fromJson(response, new TypeToken<List<Project>>(){}.getType());
+        projects = gson.fromJson(response, new TypeToken<List<Project>>() {
+        }.getType());
     }
 
     public List<Project> getProjects() {

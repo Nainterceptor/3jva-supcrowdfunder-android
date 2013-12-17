@@ -10,21 +10,21 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * Created by nainterceptor on 15/12/13.
+ * Author: Gaël Demette
+ * Date: 16/12/13
+ * Time: 23:23
  */
-public class LoginRestClient extends AbstractRestClient {
+public class UserRestClient extends AbstractLoggedRestClient {
     protected Map<String, Object> json;
+    protected Map<String, Object> user;
 
-    public LoginRestClient(Context context, String email, String password) {
-        super("/" + Locale.getDefault().getLanguage() + "/user/checkuser");
-        this
-                .addParam("email", email)
-                .addParam("password", password);
+    public UserRestClient(Context context) {
+        super(context, "/" + Locale.getDefault().getLanguage() + "/user/checkuser");
         try {
             this.Execute(LoginRestClient.RequestMethod.POST);
             json = gson.fromJson(response, HashMap.class);
             if (json.get("error") == null) {
-                Toast.makeText(context, Global.getRes().getString(R.string.loginSuccess), Toast.LENGTH_LONG).show();
+                user = (Map<String, Object>) json.get("user");
                 this.success = true;
             } else {
                 Toast.makeText(context, (String) json.get("error"), Toast.LENGTH_LONG).show();
@@ -33,5 +33,9 @@ public class LoginRestClient extends AbstractRestClient {
             e.printStackTrace();
             Toast.makeText(context, Global.getRes().getString(R.string.restError), Toast.LENGTH_LONG).show();
         }
+    }
+
+    public Map<String, Object> getUser() {
+        return user;
     }
 }

@@ -9,15 +9,14 @@ import com.supinfo.supcrowdfunder.util.Global;
  * Created by nainterceptor on 15/12/13.
  */
 public class ContributionsRestClient extends AbstractRestClient {
-    public ContributionsRestClient(Context context, String id)
-    {
+    public ContributionsRestClient(Context context, String id) {
         super("/project/" + id + "/contributions");
         try {
             this.Execute(ContributionsRestClient.RequestMethod.GET);
+            response = response.substring(0, response.indexOf("\n"));
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(context, Global.getRes().getString(R.string.restError), Toast.LENGTH_LONG).show();
         }
-        response = response.substring(0, response.indexOf("\n"));
     }
 }

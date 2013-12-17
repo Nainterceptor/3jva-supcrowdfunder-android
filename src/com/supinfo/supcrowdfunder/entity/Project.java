@@ -17,7 +17,7 @@ public class Project implements Parcelable {
     protected Category category;
     protected String createdAt;
 
-    public Project () {
+    public Project() {
         id = null;
         name = null;
         details = null;
@@ -28,8 +28,8 @@ public class Project implements Parcelable {
         createdAt = null;
     }
 
-    public Project (Long cId, String cName, String cDetails, User cUser, Long cNeedCredits, String cTerm, Category cCategory,
-                    String cCreatedAt){
+    public Project(Long cId, String cName, String cDetails, User cUser, Long cNeedCredits, String cTerm, Category cCategory,
+                   String cCreatedAt) {
         id = cId;
         name = cName;
         details = cDetails;

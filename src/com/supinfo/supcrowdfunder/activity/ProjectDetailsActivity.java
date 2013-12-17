@@ -7,9 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import com.supinfo.supcrowdfunder.R;
-import com.supinfo.supcrowdfunder.entity.Category;
 import com.supinfo.supcrowdfunder.entity.Project;
-import com.supinfo.supcrowdfunder.entity.User;
 import com.supinfo.supcrowdfunder.util.SuperActivity;
 import com.supinfo.supcrowdfunder.util.rest.ContributionsRestClient;
 
@@ -50,13 +48,14 @@ public class ProjectDetailsActivity extends SuperActivity {
         projectButton = (Button) findViewById(R.id.projectButton);
 
         projectName.setText(project.getName());
-        needCredits.setText(project.getNeedCredits().toString()+"€");
+        needCredits.setText(project.getNeedCredits().toString() + "€");
         createdAt.setText(project.getCreatedAt());
         term.setText(project.getTerm());
-        creator.setText(project.getUser().getFirstname()+" "+project.getUser().getLastname());
+        creator.setText(project.getUser().getFirstname() + " " + project.getUser().getLastname());
         description.setText(project.getDetails());
     }
-    public void onResume(){
+
+    public void onResume() {
         super.onResume();
         actualCredits = (TextView) findViewById(R.id.projectActualCredits);
         percentage = (TextView) findViewById(R.id.projectPercentage);
@@ -69,6 +68,7 @@ public class ProjectDetailsActivity extends SuperActivity {
 
         projectButton.setOnClickListener(projectListener);
     }
+
     private View.OnClickListener projectListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {

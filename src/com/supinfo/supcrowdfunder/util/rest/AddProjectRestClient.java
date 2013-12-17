@@ -3,8 +3,6 @@ package com.supinfo.supcrowdfunder.util.rest;
 import android.content.Context;
 import android.widget.Toast;
 import com.supinfo.supcrowdfunder.R;
-import com.supinfo.supcrowdfunder.entity.Category;
-import com.supinfo.supcrowdfunder.entity.User;
 import com.supinfo.supcrowdfunder.util.Global;
 
 import java.util.HashMap;
@@ -20,9 +18,9 @@ import java.util.Map;
  */
 public class AddProjectRestClient extends AbstractLoggedRestClient {
     protected Map<String, Object> json;
+
     public AddProjectRestClient(Context context, String projectName, String projectDetails,
-                                String projectCategory, String projectNeedCredits, String termDate)
-    {
+                                String projectCategory, String projectNeedCredits, String termDate) {
         super(context, "/project/" + Locale.getDefault().getLanguage() + "/create");
         this
                 .addParam("name", projectName)
@@ -38,9 +36,9 @@ public class AddProjectRestClient extends AbstractLoggedRestClient {
         }
         json = gson.fromJson(response, HashMap.class);
         if (json.get("error").getClass().getName().equals("java.lang.Boolean") && json.get("error").equals(false)) {
-            Toast.makeText(context, Global.getRes().getString(R.string.addProjectSuccess),Toast.LENGTH_LONG).show();
+            Toast.makeText(context, Global.getRes().getString(R.string.addProjectSuccess), Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(context, (String) json.get("error"),Toast.LENGTH_LONG).show();
+            Toast.makeText(context, (String) json.get("error"), Toast.LENGTH_LONG).show();
         }
     }
 }

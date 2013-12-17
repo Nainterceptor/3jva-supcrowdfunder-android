@@ -12,6 +12,7 @@ public class Global {
     public static void setAPIUrl(String APIUrl) {
         Global.APIUrl = APIUrl;
     }
+
     public static String getAPIUrl() {
         return Global.APIUrl;
     }

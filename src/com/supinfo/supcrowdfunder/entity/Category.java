@@ -10,14 +10,14 @@ public class Category implements Parcelable {
     protected Long id;
     protected String name;
 
-    public Category (){
-        id=null;
-        name=null;
+    public Category() {
+        id = null;
+        name = null;
     }
 
-    public Category (Long cId, String cName){
-        id=cId;
-        name=cName;
+    public Category(Long cId, String cName) {
+        id = cId;
+        name = cName;
     }
 
     @Override

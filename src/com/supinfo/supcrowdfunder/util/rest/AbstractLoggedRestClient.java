@@ -3,7 +3,6 @@ package com.supinfo.supcrowdfunder.util.rest;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import com.supinfo.supcrowdfunder.util.SuperActivity;
 
 /**
  * Author: Gaël Demette
@@ -11,12 +10,11 @@ import com.supinfo.supcrowdfunder.util.SuperActivity;
  * Time: 17:46
  */
 public abstract class AbstractLoggedRestClient extends AbstractRestClient {
-    public AbstractLoggedRestClient(Context context, String url)
-    {
+    public AbstractLoggedRestClient(Context context, String url) {
         super(url);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         this
-            .addParam("email", preferences.getString("email", "no-mail"))
-            .addParam("password", preferences.getString("password", "no-password"));
+                .addParam("email", preferences.getString("email", "no-mail"))
+                .addParam("password", preferences.getString("password", "no-password"));
     }
 }

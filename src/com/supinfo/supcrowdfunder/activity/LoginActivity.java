@@ -1,6 +1,5 @@
 package com.supinfo.supcrowdfunder.activity;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -20,6 +19,7 @@ public class LoginActivity extends SuperActivity {
     Button loginButton = null;
     EditText email = null;
     EditText password = null;
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
@@ -28,6 +28,7 @@ public class LoginActivity extends SuperActivity {
         loginButton = (Button) findViewById(R.id.loginSubmit);
         loginButton.setOnClickListener(loginListener);
     }
+
     private View.OnClickListener loginListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -41,8 +42,9 @@ public class LoginActivity extends SuperActivity {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("email", email.getText().toString());
                 editor.putString("password", password.getText().toString());
-                editor.putBoolean("connected", true);
+                editor.putBoolean("logged", true);
                 editor.commit();
+                finish();
             }
         }
     };

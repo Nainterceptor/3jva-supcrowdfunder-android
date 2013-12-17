@@ -11,14 +11,16 @@ import java.util.List;
  */
 public class AllProjectsRestClient extends AbstractRestClient {
     private List<Project> projects;
+
     public AllProjectsRestClient(Context context) {
         super("/project/all");
         try {
             this.Execute(AllProjectsRestClient.RequestMethod.GET);
+            projects = gson.fromJson(response, new TypeToken<List<Project>>() {
+            }.getType());
         } catch (Exception e) {
             e.printStackTrace();
         }
-        projects = gson.fromJson(response, new TypeToken<List<Project>>(){}.getType());
     }
 
     public List<Project> getProjects() {

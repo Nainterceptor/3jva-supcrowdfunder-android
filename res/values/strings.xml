@@ -29,6 +29,40 @@
     <string name="registrationSubmit">S\'inscrire</string>
     <string name="registrationSuccess">Merci de votre inscription.</string>
 
+    <string name="edituserTitle">Modifier son profil</string>
+    <string name="edituserEmail">E-mail : </string>
+    <string name="edituserEmailHint">E-mail</string>
+    <string name="edituserPassword">Mot de passe : </string>
+    <string name="edituserPasswordHint">Mot de passe</string>
+    <string name="edituserPasswordConfirm">Confirmation : </string>
+    <string name="edituserPasswordConfirmHint">Mot de passe (Confirmation)</string>
+    <string name="edituserFirstname">Prénom : </string>
+    <string name="edituserFirstnameConfirm">Prénom</string>
+    <string name="edituserLastname">Nom : </string>
+    <string name="edituserLastnameHint">Nom</string>
+    <string name="edituserAddress">Adresse : </string>
+    <string name="edituserAddressHint">Adresse</string>
+    <string name="edituserCity">Ville : </string>
+    <string name="edituserCityHint">Ville</string>
+    <string name="edituserZipCode">Code postal : </string>
+    <string name="edituserZipCodeHint">Code postal</string>
+    <string name="edituserSex">Sex : </string>
+    <string name="edituserSubmit">Editer</string>
+    <string name="edituserSuccess">Votre utilisateur a bien été sauvegardé.</string>
+
+    <string name="viewuserTitle">Voir son profil</string>
+    <string name="viewuserEmail">E-mail : </string>
+    <string name="viewuserFirstname">Prénom : </string>
+    <string name="viewuserLastname">Nom : </string>
+    <string name="viewuserAddress">Adresse : </string>
+    <string name="viewuserZipCode">Code postal : </string>
+    <string name="viewuserCity">Ville : </string>
+    <string name="viewuserAdmin">Administrateur ? </string>
+    <string name="viewuserCreatedAt">Created At : </string>
+    <string name="viewuserSex">Sexe : </string>
+    <string name="viewuserSexMen">Homme</string>
+    <string name="viewuserSexGirl">Femme</string>
+
     <string name="loginTitle">Connexion</string>
     <string name="loginEmail">E-mail : </string>
     <string name="loginEmailHint">E-mail</string>
@@ -64,4 +98,15 @@
     <string name="validate">Confirmer</string>
     <string name="cancel">Annuler</string>
     <string name="URL">"http://10.1.18.219:8080/api"</string>
+
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+
+    <string name="menuIndex">Index</string>
+    <string name="menuUser">Utilisateur</string>
+    <string name="menuLogin">Connexion</string>
+    <string name="menuLogout">Déconnexion</string>
+    <string name="menuRegister">Inscription</string>
+    <string name="menuViewProfile">Voir le profil</string>
+    <string name="menuEditProfile">Modifier le profil</string>
 </resources>

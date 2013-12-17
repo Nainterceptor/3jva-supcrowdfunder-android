@@ -52,7 +52,7 @@ public class IndexActivity extends SuperActivity {
 
         categoriesList = client3.getCategories();
         allCategories.add("Catégories");
-        for (Category category : categoriesList){
+        for (Category category : categoriesList) {
             allCategories.add(category.getName());
         }
 
@@ -74,8 +74,8 @@ public class IndexActivity extends SuperActivity {
         }
 
         ListAdapter adapter = new SimpleAdapter(this, allProjects, R.layout.simple_list_item_3,
-                new String[] {"name", "details", "percent"},
-                new int[] {R.id.nameBodyList, R.id.detailsBodyList, R.id.percentBodyList});
+                new String[]{"name", "details", "percent"},
+                new int[]{R.id.nameBodyList, R.id.detailsBodyList, R.id.percentBodyList});
         projectsName.setAdapter(adapter);
         projectsName.setOnItemClickListener(new CustomOnItemClickListener());
         indexAddProject.setOnClickListener(new CustomOnClickListenerAddProject());
@@ -85,7 +85,7 @@ public class IndexActivity extends SuperActivity {
             AdapterView.OnItemClickListener {
 
         @Override
-        public void onItemClick(AdapterView <?> adapterView, View view, int i, long l) {
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             Project projectIntent = projectsList.get(i);
             Intent intent = new Intent(IndexActivity.this, ProjectDetailsActivity.class);
             intent.putExtra("com.supinfo.supcrowdfunder.activity.PROJECTINTENT", projectIntent);
@@ -108,15 +108,17 @@ public class IndexActivity extends SuperActivity {
 
         public void onItemSelected(AdapterView<?> parent, View view, int pos,
                                    long id) {
-            if(!onLoad) {
+            if (!onLoad) {
                 Category categoryIntent = categoriesList.get(pos - 1);
                 Intent intent = new Intent(IndexActivity.this, CategoryActivity.class);
                 intent.putExtra("com.supinfo.supcrowdfunder.activity.CATEGORYINTENT", categoryIntent);
                 IndexActivity.this.startActivity(intent);
-            } onLoad = false;
+            }
+            onLoad = false;
         }
 
         @Override
-        public void onNothingSelected(AdapterView<?> parentView) {}
+        public void onNothingSelected(AdapterView<?> parentView) {
+        }
     }
 }

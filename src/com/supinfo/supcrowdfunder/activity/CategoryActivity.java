@@ -4,12 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import com.supinfo.supcrowdfunder.R;
 import com.supinfo.supcrowdfunder.entity.Category;
 import com.supinfo.supcrowdfunder.entity.Project;
-import com.supinfo.supcrowdfunder.util.rest.AllCategoriesRestClient;
-import com.supinfo.supcrowdfunder.util.rest.AllProjectsRestClient;
 import com.supinfo.supcrowdfunder.util.rest.CategoryProjectsRestClient;
 import com.supinfo.supcrowdfunder.util.rest.ContributionsRestClient;
 
@@ -59,8 +60,8 @@ public class CategoryActivity extends Activity {
         }
 
         ListAdapter adapter = new SimpleAdapter(this, allProjects, R.layout.simple_list_item_3,
-                new String[] {"name", "details", "percent"},
-                new int[] {R.id.nameBodyList, R.id.detailsBodyList, R.id.percentBodyList});
+                new String[]{"name", "details", "percent"},
+                new int[]{R.id.nameBodyList, R.id.detailsBodyList, R.id.percentBodyList});
         categoriesList.setAdapter(adapter);
         categoriesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 

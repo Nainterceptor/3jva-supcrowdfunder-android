@@ -28,8 +28,10 @@ import java.util.ArrayList;
 public abstract class AbstractRestClient {
 
     protected ArrayList<NameValuePair> params;
-    protected ArrayList <NameValuePair> headers;
+    protected ArrayList<NameValuePair> headers;
+
     public enum RequestMethod {GET, POST}
+
     protected String url;
     protected int responseCode;
     protected String message;
@@ -49,43 +51,37 @@ public abstract class AbstractRestClient {
         return responseCode;
     }
 
-    public AbstractRestClient(String url)
-    {
+    public AbstractRestClient(String url) {
         this.url = Global.getAPIUrl() + url;
         params = new ArrayList<NameValuePair>();
         headers = new ArrayList<NameValuePair>();
         this
-            .addHeader("Accept", "*/*")
-            .addHeader("Cache-Control", "no-cache");
-         gson = new Gson();
+                .addHeader("Accept", "*/*")
+                .addHeader("Cache-Control", "no-cache");
+        gson = new Gson();
     }
 
-    public AbstractRestClient addParam(String name, String value)
-    {
+    public AbstractRestClient addParam(String name, String value) {
         params.add(new BasicNameValuePair(name, value));
         return this;
     }
 
-    public AbstractRestClient addHeader(String name, String value)
-    {
+    public AbstractRestClient addHeader(String name, String value) {
         headers.add(new BasicNameValuePair(name, value));
         return this;
     }
 
-    public AbstractRestClient Execute(RequestMethod method) throws Exception
-    {
-        switch(method) {
-            case GET:
-            {
+    public AbstractRestClient Execute(RequestMethod method) throws Exception {
+        switch (method) {
+            case GET: {
                 //add parameters
                 String combinedParams = "";
-                if(!params.isEmpty()){
+                if (!params.isEmpty()) {
                     combinedParams += "?";
-                    for(NameValuePair p : params)
-                    {
-                        String paramString = p.getName() + "=" + URLEncoder.encode(p.getValue(),"UTF - 8");
-                        if(combinedParams.length() > 1)
-                            combinedParams  +=  "&" + paramString;
+                    for (NameValuePair p : params) {
+                        String paramString = p.getName() + "=" + URLEncoder.encode(p.getValue(), "UTF - 8");
+                        if (combinedParams.length() > 1)
+                            combinedParams += "&" + paramString;
                         else
                             combinedParams += paramString;
                     }
@@ -93,20 +89,19 @@ public abstract class AbstractRestClient {
 
                 HttpGet request = new HttpGet(url + combinedParams);
                 //add headers
-                for(NameValuePair h : headers)
+                for (NameValuePair h : headers)
                     request.addHeader(h.getName(), h.getValue());
                 executeRequest(request);
                 break;
             }
-            case POST:
-            {
+            case POST: {
                 HttpPost request = new HttpPost(url);
 
                 //add headers
-                for(NameValuePair h : headers)
+                for (NameValuePair h : headers)
                     request.addHeader(h.getName(), h.getValue());
 
-                if(!params.isEmpty())
+                if (!params.isEmpty())
                     request.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
 
                 executeRequest(request);
@@ -116,8 +111,7 @@ public abstract class AbstractRestClient {
         return this;
     }
 
-    protected void executeRequest(HttpUriRequest request)
-    {
+    protected void executeRequest(HttpUriRequest request) {
         HttpClient client = new DefaultHttpClient();
 
         HttpResponse httpResponse;
@@ -138,7 +132,7 @@ public abstract class AbstractRestClient {
                 instream.close();
             }
 
-        } catch (ClientProtocolException e)  {
+        } catch (ClientProtocolException e) {
             client.getConnectionManager().shutdown();
             e.printStackTrace();
         } catch (IOException e) {

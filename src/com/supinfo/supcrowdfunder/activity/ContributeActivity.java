@@ -12,13 +12,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.supinfo.supcrowdfunder.R;
 import com.supinfo.supcrowdfunder.entity.Project;
-import com.supinfo.supcrowdfunder.util.SuperActivity;
+import com.supinfo.supcrowdfunder.util.SuperLoggedActivity;
 import com.supinfo.supcrowdfunder.util.rest.ContributeRestClient;
 
 /**
  * Created by Robin on 12/12/13.
  */
-public class ContributeActivity extends SuperActivity {
+public class ContributeActivity extends SuperLoggedActivity {
     Resources res = null;
     Button contributeButton = null;
     TextView body = null;
@@ -45,18 +45,17 @@ public class ContributeActivity extends SuperActivity {
                 res.getString(R.string.contributeThanks2));
         contributeButton.setOnClickListener(contributeListener);
     }
+
     private View.OnClickListener contributeListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if (amount.getText().length() == 0){
-                Toast.makeText(ContributeActivity.this,res.getString(R.string.contributeToastEmpty),Toast.LENGTH_SHORT).show();
-            }
-            else if (Long.parseLong(amount.getText().toString()) <= 0L){
-                Toast.makeText(ContributeActivity.this,res.getString(R.string.contributeToastInvalid),Toast.LENGTH_SHORT).show();
+            if (amount.getText().length() == 0) {
+                Toast.makeText(ContributeActivity.this, res.getString(R.string.contributeToastEmpty), Toast.LENGTH_SHORT).show();
+            } else if (Long.parseLong(amount.getText().toString()) <= 0L) {
+                Toast.makeText(ContributeActivity.this, res.getString(R.string.contributeToastInvalid), Toast.LENGTH_SHORT).show();
                 amount.getText().clear();
-            }
-            else{
-                alert.setMessage(res.getString(R.string.contributeAlertContent)+" "+amount.getText().toString()+"€");
+            } else {
+                alert.setMessage(res.getString(R.string.contributeAlertContent) + " " + amount.getText().toString() + "€");
                 alert.setTitle(res.getString(R.string.contributeAlertTitle));
                 alert.setPositiveButton(res.getString(R.string.validate), alertValidateListener);
                 alert.setNegativeButton(res.getString(R.string.cancel), alertCancelListener);
@@ -81,7 +80,7 @@ public class ContributeActivity extends SuperActivity {
     private DialogInterface.OnClickListener alertCancelListener = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
-            Toast.makeText(ContributeActivity.this,res.getString(R.string.contributeToastCancel),Toast.LENGTH_SHORT).show();
+            Toast.makeText(ContributeActivity.this, res.getString(R.string.contributeToastCancel), Toast.LENGTH_SHORT).show();
         }
     };
 }

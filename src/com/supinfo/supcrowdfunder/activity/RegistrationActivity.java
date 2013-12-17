@@ -18,6 +18,7 @@ public class RegistrationActivity extends SuperActivity {
     EditText passwordConfirm = null;
     EditText firstname = null;
     EditText lastname = null;
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registration_layout);
@@ -29,6 +30,7 @@ public class RegistrationActivity extends SuperActivity {
         registrationButton = (Button) findViewById(R.id.registrationSubmit);
         registrationButton.setOnClickListener(registrationListener);
     }
+
     private View.OnClickListener registrationListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
