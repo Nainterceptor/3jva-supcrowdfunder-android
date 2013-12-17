@@ -34,13 +34,11 @@ public class AddProjectActivity extends SuperLoggedActivity {
     Button projectButton = null;
     String termDate = null;
     Category projectCategory = null;
-    boolean onLoad;
 
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_project_activity);
-        onLoad = true;
 
         res = getResources();
         projectName = (EditText) findViewById(R.id.addProjectName);
@@ -63,6 +61,7 @@ public class AddProjectActivity extends SuperLoggedActivity {
         categoriesSpinner.setAdapter(adapter);
 
         projectTerm.setText(DateTool.calendarString(defaultDate));
+        termDate=DateTool.calendarString(defaultDate);
         projectTerm.setOnClickListener(termListener);
         categoriesSpinner.setOnItemSelectedListener(new categoriesListener());
         projectButton.setOnClickListener(projectAddListener);
@@ -91,10 +90,7 @@ public class AddProjectActivity extends SuperLoggedActivity {
 
         public void onItemSelected(AdapterView<?> parent, View view, int pos,
                                    long id) {
-            if (!onLoad) {
                 projectCategory = categoriesList.get(pos);
-            }
-            onLoad = false;
         }
 
         @Override
