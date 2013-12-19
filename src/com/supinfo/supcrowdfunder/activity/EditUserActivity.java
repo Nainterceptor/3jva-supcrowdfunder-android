@@ -59,12 +59,14 @@ public class EditUserActivity extends SuperLoggedActivity {
         super.onResume();
         client = new UserRestClient(this);
         Map<String, Object> user = client.getUser();
-        email.setText((String) user.get("email"));
-        firstname.setText((String) user.get("firstname"));
-        lastname.setText((String) user.get("lastname"));
-        address.setText((String) user.get("address"));
-        zipCode.setText((String) user.get("zipCode"));
-        city.setText((String) user.get("city"));
+        if (client.isSuccess()) {
+            email.setText((String) user.get("email"));
+            firstname.setText((String) user.get("firstname"));
+            lastname.setText((String) user.get("lastname"));
+            address.setText((String) user.get("address"));
+            zipCode.setText((String) user.get("zipCode"));
+            city.setText((String) user.get("city"));
+        }
         editButton = (Button) findViewById(R.id.edituserSubmit);
         editButton.setOnClickListener(editListener);
     }

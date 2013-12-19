@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name="libs">
+    <archive path="/Users/nainterceptor/IdeaProjects/supinfo-3JVA-SupCrowdfunder-Android/libs/gson-2.2.4.jar" />
+    <archive path="/Users/nainterceptor/IdeaProjects/supinfo-3JVA-SupCrowdfunder-Android/libs/gson-2.2.4-javadoc.jar" />
+    <archive path="/Users/nainterceptor/IdeaProjects/supinfo-3JVA-SupCrowdfunder-Android/libs/gson-2.2.4-sources.jar" />
+  </library>
+</eclipse-userlibraries>
+

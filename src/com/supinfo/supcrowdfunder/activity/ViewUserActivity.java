@@ -41,20 +41,22 @@ public class ViewUserActivity extends SuperLoggedActivity {
         super.onResume();
         client = new UserRestClient(this);
         Map<String, Object> user = client.getUser();
-        email.setText((String) user.get("email"));
-        firstname.setText((String) user.get("firstname"));
-        lastname.setText((String) user.get("lastname"));
-        address.setText((String) user.get("address"));
-        zipCode.setText((String) user.get("zipCode"));
-        createdAt.setText((String) user.get("createdAt"));
-        city.setText((String) user.get("city"));
-        if ((Boolean) user.get("admin"))
-            admin.setText(res.getString(R.string.yes));
-        else
-            admin.setText(res.getString(R.string.no));
-        if ((Boolean) user.get("sex"))
-            sex.setText(res.getString(R.string.viewuserSexMen));
-        else
-            sex.setText(res.getString(R.string.viewuserSexGirl));
+        if (client.isSuccess()) {
+            email.setText((String) user.get("email"));
+            firstname.setText((String) user.get("firstname"));
+            lastname.setText((String) user.get("lastname"));
+            address.setText((String) user.get("address"));
+            zipCode.setText((String) user.get("zipCode"));
+            createdAt.setText((String) user.get("createdAt"));
+            city.setText((String) user.get("city"));
+            if ((Boolean) user.get("admin"))
+                admin.setText(res.getString(R.string.yes));
+            else
+                admin.setText(res.getString(R.string.no));
+            if ((Boolean) user.get("sex"))
+                sex.setText(res.getString(R.string.viewuserSexMen));
+            else
+                sex.setText(res.getString(R.string.viewuserSexGirl));
+        }
     }
 }
